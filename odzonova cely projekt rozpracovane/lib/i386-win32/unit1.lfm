@@ -1,24 +1,24 @@
 object Form1: TForm1
-  Left = 634
-  Height = 714
-  Top = 199
-  Width = 923
+  Left = 502
+  Height = 705
+  Top = 144
+  Width = 938
   Caption = 'Form1'
-  ClientHeight = 714
-  ClientWidth = 923
+  ClientHeight = 705
+  ClientWidth = 938
   Color = 3992831
   OnCreate = FormCreate
   LCLVersion = '1.6.4.0'
   object Button1: TButton
-    Left = 672
+    Left = 640
     Height = 81
-    Top = 584
+    Top = 552
     Width = 200
     Caption = 'PRIHLÁSIŤ'
     Font.CharSet = EASTEUROPE_CHARSET
-    Font.Color = clRed
+    Font.Color = clBlack
     Font.Height = -28
-    Font.Name = 'Arial Narrow'
+    Font.Name = 'Times New Roman'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
     OnClick = Button1Click
@@ -136,7 +136,7 @@ object Form1: TForm1
   object Label7: TLabel
     Left = 408
     Height = 25
-    Top = 544
+    Top = 536
     Width = 51
     Caption = 'Label7'
     ParentColor = False
