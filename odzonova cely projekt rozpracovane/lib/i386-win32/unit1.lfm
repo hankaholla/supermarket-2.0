@@ -1,19 +1,20 @@
 object Form1: TForm1
-  Left = 502
-  Height = 705
-  Top = 144
-  Width = 938
-  Caption = 'Form1'
-  ClientHeight = 705
-  ClientWidth = 938
-  Color = 3992831
+  Left = 500
+  Height = 780
+  Top = 152
+  Width = 937
+  Caption = 'Pokladňa'
+  ClientHeight = 780
+  ClientWidth = 937
+  Color = 16702880
   OnCreate = FormCreate
+  Position = poDesktopCenter
   LCLVersion = '1.6.4.0'
   object Button1: TButton
-    Left = 640
-    Height = 81
-    Top = 552
-    Width = 200
+    Left = 617
+    Height = 75
+    Top = 518
+    Width = 183
     Caption = 'PRIHLÁSIŤ'
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clBlack
@@ -26,31 +27,34 @@ object Form1: TForm1
     TabOrder = 0
   end
   object Edit1: TEdit
-    Left = 408
+    Left = 397
     Height = 33
-    Top = 408
-    Width = 128
+    Top = 378
+    Width = 117
+    OnClick = Edit1Click
     TabOrder = 1
-    Text = 'AB123'
   end
   object Edit2: TEdit
-    Left = 408
+    Left = 397
     Height = 33
-    Top = 464
-    Width = 128
+    Top = 430
+    Width = 117
+    EchoMode = emPassword
+    OnClick = Edit2Click
+    ParentShowHint = False
+    PasswordChar = '*'
     TabOrder = 2
-    Text = '****'
   end
   object Label1: TLabel
     Left = 272
-    Height = 145
+    Height = 134
     Top = 16
-    Width = 368
+    Width = 337
     AutoSize = False
     Caption = 'HNILLA'
     Font.CharSet = ANSI_CHARSET
-    Font.Color = clRed
-    Font.Height = 108
+    Font.Color = clPurple
+    Font.Height = 99
     Font.Name = 'Perpetua Titling MT'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -60,13 +64,13 @@ object Form1: TForm1
     OptimalFill = True
   end
   object Label2: TLabel
-    Left = 280
+    Left = 272
     Height = 27
-    Top = 128
+    Top = 119
     Width = 333
     Caption = 'PLESNE PODĽA MOJEJ CHUTI'
     Font.CharSet = ANSI_CHARSET
-    Font.Color = clRed
+    Font.Color = clPurple
     Font.Height = -22
     Font.Name = 'Perpetua Titling MT'
     Font.Pitch = fpVariable
@@ -76,9 +80,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 368
+    Left = 360
     Height = 49
-    Top = 208
+    Top = 193
     Width = 147
     Caption = 'VITAJTE!'
     Font.CharSet = ANSI_CHARSET
@@ -91,9 +95,9 @@ object Form1: TForm1
     OnClick = Label3Click
   end
   object Label4: TLabel
-    Left = 360
+    Left = 353
     Height = 42
-    Top = 312
+    Top = 289
     Width = 156
     Caption = 'Prihláste sa:'
     Font.CharSet = ANSI_CHARSET
@@ -106,9 +110,9 @@ object Form1: TForm1
     OnClick = Label4Click
   end
   object Label5: TLabel
-    Left = 312
+    Left = 309
     Height = 42
-    Top = 464
+    Top = 430
     Width = 67
     Caption = 'heslo'
     Font.CharSet = ANSI_CHARSET
@@ -120,9 +124,9 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 312
+    Left = 309
     Height = 42
-    Top = 400
+    Top = 371
     Width = 73
     Caption = 'meno'
     Font.CharSet = ANSI_CHARSET
@@ -134,11 +138,17 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 408
-    Height = 25
-    Top = 536
-    Width = 51
-    Caption = 'Label7'
+    Left = 256
+    Height = 44
+    Top = 518
+    Width = 306
+    Caption = 'CHYBNE PRIHLASOVACIE UDAJE!'#13#10'SKUSTE ZNOVU'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -20
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
 end

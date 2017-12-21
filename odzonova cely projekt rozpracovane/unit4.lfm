@@ -1,22 +1,71 @@
 object Form4: TForm4
-  Left = 501
-  Height = 703
-  Top = 145
-  Width = 941
+  Left = 914
+  Height = 780
+  Top = 334
+  Width = 937
   Caption = 'Form4'
-  ClientHeight = 703
-  ClientWidth = 941
-  Color = 14207743
+  ClientHeight = 780
+  ClientWidth = 937
+  Color = 16702880
   OnCreate = FormCreate
+  Position = poDesktopCenter
   LCLVersion = '1.6.4.0'
   object Memo1: TMemo
-    Left = 280
-    Height = 634
-    Top = 24
-    Width = 382
+    Left = 249
+    Height = 514
+    Top = 45
+    Width = 385
     Lines.Strings = (
       'Memo1'
     )
     TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 72
+    Height = 41
+    Top = 23
+    Width = 143
+    Caption = 'Váš účet: '
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clPurple
+    Font.Height = -36
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 771
+    Height = 15
+    Top = 16
+    Width = 76
+    AutoSize = False
+    Caption = 'HNILLA'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = 15
+    Font.Name = 'Perpetua Titling MT'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
+  end
+  object Label2: TLabel
+    Left = 568
+    Height = 41
+    Top = 609
+    Width = 291
+    Caption = 'Ďakujeme za nákup!'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
+    Font.Height = -36
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
   end
 end

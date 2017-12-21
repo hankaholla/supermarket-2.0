@@ -12,6 +12,9 @@ type
   { TForm4 }
 
   TForm4 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label4: TLabel;
     Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
   private
