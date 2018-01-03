@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 910
+  Left = 725
   Height = 780
-  Top = 165
+  Top = 193
   Width = 937
-  Caption = 'Pokladňa'
+  Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 780
   ClientWidth = 937
   Color = 16702880
@@ -122,8 +122,8 @@ object Form1: TForm1
     Left = 328
     Height = 44
     Top = 464
-    Width = 306
-    Caption = 'CHYBNE PRIHLASOVACIE UDAJE!'#13#10'SKUSTE ZNOVU'
+    Width = 307
+    Caption = 'CHYBNÉ PRIHLASOVACIE ÚDAJE!'#13#10'SKÚSTE ZNOVU'
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Height = -20
     Font.Name = 'Times New Roman'

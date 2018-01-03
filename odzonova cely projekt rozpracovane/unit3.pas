@@ -17,6 +17,9 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
     Image1: TImage;
     Label1: TLabel;
     Label4: TLabel;
@@ -24,6 +27,9 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
   private
@@ -32,20 +38,22 @@ type
     { public declarations }
   end;
 type zaznam=record
-     nazov:string;
      kod:string;
+     nazov:string;
 end;
 const N=15;
 
 var
   Form3: TForm3;
+  zoznam:array[1..N]of zaznam;
   pole:array[1..N]of zaznam;
   mrazaky:array[1..N]of zaznam;
   pecivo:array[1..N]of zaznam;
   ovocie:array[1..N]of zaznam;
-
-  subor:textfile;
-  l,x,y:integer;
+  zelenina:array[1..N]of zaznam;
+  drogeria:array[1..N]of zaznam;
+  subor1:textfile;
+  l,x,y,o,z,p,m,d:integer;
 
 implementation
 uses
@@ -59,14 +67,14 @@ uses
 
 procedure TForm3.Button1Click(Sender: TObject);  //mraz
 begin
- x:=20;
+x:=20;
 y:=20;
   Image1.Canvas.Fillrect(Clientrect);
   For l:=1 to N do
       Image1.Canvas.Textout(x,y*l,mrazaky[l].nazov);
 end;
 
-procedure TForm3.Button2Click(Sender: TObject);
+procedure TForm3.Button2Click(Sender: TObject);  //pecivko
 begin
 x:=20;
 y:=20;
@@ -76,7 +84,7 @@ y:=20;
 
 end;
 
-procedure TForm3.Button3Click(Sender: TObject);
+procedure TForm3.Button3Click(Sender: TObject); //ovocie
 begin
   x:=20;
   y:=20;
@@ -90,44 +98,93 @@ begin
  Form2.Show;
 end;
 
+procedure TForm3.Button5Click(Sender: TObject);
+begin
+x:=20;
+ y:=20;
+   Image1.Canvas.Fillrect(Clientrect);
+   For l:=1 to N do
+       Image1.Canvas.Textout(x,y*l,zelenina[l].nazov);
+end;
+
+procedure TForm3.Button6Click(Sender: TObject);
+begin
+   x:=20;
+  y:=20;
+    Image1.Canvas.Fillrect(Clientrect);
+    For l:=1 to N do
+        Image1.Canvas.Textout(x,y*l,drogeria[l].nazov);
+end;
+
+procedure TForm3.Button7Click(Sender: TObject);
+begin
+  Form1.Show;
+//Form1.edit1.clear;
+Form1.edit2.clear;
+Form1.label7.visible:=False;
+end;
+
 procedure TForm3.FormCreate(Sender: TObject);
 var i,j:integer;
+  cislo:char;
 begin
-assignfile(subor,'zoznam.txt');
-reset(subor);
+assignfile(subor1,'TOVAR.txt');
+reset(subor1);
+j:=0;
 
-i:=0;
+while not eof(subor1) do
+      begin
+        inc(j);
 
-while not eof (subor) do
-        begin
-            inc(i);
-            readln(subor,pole[i].nazov);
-            readln(subor,pole[i].kod);
-        end;
-i:=0;
+        read(subor,cislo);
+         repeat
+            pole[j].kod:=pole[j].kod+cislo;
+            read(subor,cislo);
+         until cislo=';';
+
+         read(subor,znak);
+         repeat
+            pole[j].nazov:=pole[j].nazov+znak;
+            read(subor,znak);
+         until eoln(subor);
+         readln(subor);
+o:=0;
+z:=0;
+p:=0;
+m:=0;
+d:=0;
+      end;
 
 For j:=1 to N do
         begin
         if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='1') then begin
-                                                          inc(i);
-                                                          mrazaky[j].nazov:=pole[i].nazov;
-                                                          mrazaky[j].kod:=pole[i].kod;
+                                                          inc(o);
+                                                          ovocie[o].nazov:=pole[j].nazov;
+                                                          ovocie[o].kod:=pole[j].kod;
+
                                                           end;
-        if ((pole[j].kod[1])='2') and ((pole[j].kod[2])='2') then begin
-                                                          inc(i);
-                                                          pecivo[j].nazov:=pole[i].nazov;
-                                                          pecivo[j].kod:=pole[i].kod;
+        if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='2') then begin
+                                                          inc(z);
+                                                          zelenina[z].nazov:=pole[j].nazov;
+                                                          zelenina[z].kod:=pole[j].kod;
                                                           end;
-        if ((pole[j].kod[1])='3') and ((pole[j].kod[2])='3') then begin
-                                                          inc(i);
-                                                          ovocie[j].nazov:=pole[i].nazov;
-                                                          ovocie[j].kod:=pole[i].kod;
+        if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='3') then begin
+                                                          inc(p);
+                                                          pecivo[p].nazov:=pole[j].nazov;
+                                                          pecivo[p].kod:=pole[j].kod;
+                                                          end;
+        if ((pole[j].kod[1])='3') and ((pole[j].kod[2])='4') then begin
+                                                          inc(m);
+                                                          mrazaky[m].nazov:=pole[j].nazov;
+                                                          mrazaky[m].kod:=pole[j].kod;
+                                                          end;
+                                                          end;
+        if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='5') then begin
+                                                          inc(d);
+                                                          drogeria[d].nazov:=pole[j].nazov;
+                                                          drogeria[d].kod:=pole[j].kod;
                                                           end;
         end;
-
-
-
-end;
 
 procedure TForm3.Image1Click(Sender: TObject);
 begin

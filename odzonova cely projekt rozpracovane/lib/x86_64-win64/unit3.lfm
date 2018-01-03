@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 539
+  Left = 620
   Height = 780
-  Top = 230
+  Top = 146
   Width = 937
   Caption = 'Form3'
   ClientHeight = 780
@@ -14,7 +14,7 @@ object Form3: TForm3
   object Button1: TButton
     Left = 40
     Height = 42
-    Top = 296
+    Top = 416
     Width = 154
     Caption = 'Mrazene'
     OnClick = Button1Click
@@ -23,7 +23,7 @@ object Form3: TForm3
   object Button2: TButton
     Left = 40
     Height = 42
-    Top = 360
+    Top = 336
     Width = 154
     Caption = 'Pečivo'
     OnClick = Button2Click
@@ -32,14 +32,14 @@ object Form3: TForm3
   object Button3: TButton
     Left = 40
     Height = 42
-    Top = 424
+    Top = 176
     Width = 154
     Caption = 'Ovocíčko'
     OnClick = Button3Click
     TabOrder = 2
   end
   object Image1: TImage
-    Left = 264
+    Left = 240
     Height = 509
     Top = 176
     Width = 549
@@ -87,5 +87,23 @@ object Form3: TForm3
     Width = 80
     Caption = 'Pokladnik:'
     ParentColor = False
+  end
+  object Button5: TButton
+    Left = 40
+    Height = 46
+    Top = 256
+    Width = 154
+    Caption = 'Zelenina'
+    OnClick = Button5Click
+    TabOrder = 4
+  end
+  object Button6: TButton
+    Left = 40
+    Height = 46
+    Top = 496
+    Width = 153
+    Caption = 'Drogéria'
+    OnClick = Button6Click
+    TabOrder = 5
   end
 end

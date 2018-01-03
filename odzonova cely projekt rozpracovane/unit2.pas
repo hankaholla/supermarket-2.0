@@ -26,6 +26,8 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
@@ -119,6 +121,7 @@ end;
 procedure TForm2.Button5Click(Sender: TObject);
 begin
  Form4.Show;
+
 end;
 
 {procedure TForm2.Button6Click(Sender: TObject);  //storno

@@ -17,7 +17,6 @@ type
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
-    Button6: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     Image1: TImage;
@@ -34,7 +33,6 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);

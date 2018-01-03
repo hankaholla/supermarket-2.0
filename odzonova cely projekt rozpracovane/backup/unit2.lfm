@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 737
+  Left = 512
   Height = 745
-  Top = 147
+  Top = 163
   Width = 881
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -149,15 +149,6 @@ object Form2: TForm2
     ParentColor = False
     OnClick = Label5Click
   end
-  object Button6: TButton
-    Left = 491
-    Height = 27
-    Top = 551
-    Width = 79
-    Caption = 'STORNO'
-    OnClick = Button6Click
-    TabOrder = 7
-  end
   object Label6: TLabel
     Left = 48
     Height = 25
@@ -174,6 +165,6 @@ object Form2: TForm2
     Lines.Strings = (
       'Memo1'
     )
-    TabOrder = 8
+    TabOrder = 7
   end
 end
