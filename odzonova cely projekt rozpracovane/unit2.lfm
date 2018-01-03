@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 1032
+  Left = 737
   Height = 745
-  Top = 200
+  Top = 147
   Width = 881
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -9,9 +9,10 @@ object Form2: TForm2
   ClientHeight = 745
   ClientWidth = 881
   Color = 16702880
+  DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.8.0.6'
   object Button1: TButton
     Left = 24
     Height = 45
@@ -22,7 +23,7 @@ object Form2: TForm2
     TabOrder = 0
   end
   object Button2: TButton
-    Left = 603
+    Left = 640
     Height = 27
     Top = 53
     Width = 125
@@ -148,15 +149,6 @@ object Form2: TForm2
     ParentColor = False
     OnClick = Label5Click
   end
-  object Button6: TButton
-    Left = 491
-    Height = 27
-    Top = 551
-    Width = 79
-    Caption = 'STORNO'
-    OnClick = Button6Click
-    TabOrder = 7
-  end
   object Label6: TLabel
     Left = 48
     Height = 25
@@ -166,13 +158,13 @@ object Form2: TForm2
     ParentColor = False
   end
   object Memo1: TMemo
-    Left = 520
-    Height = 322
-    Top = 192
-    Width = 310
+    Left = 208
+    Height = 194
+    Top = 536
+    Width = 184
     Lines.Strings = (
       'Memo1'
     )
-    TabOrder = 8
+    TabOrder = 7
   end
 end

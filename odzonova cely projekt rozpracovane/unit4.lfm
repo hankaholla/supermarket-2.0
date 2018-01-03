@@ -1,15 +1,16 @@
 object Form4: TForm4
-  Left = 914
+  Left = 633
   Height = 780
-  Top = 334
+  Top = 295
   Width = 937
   Caption = 'Form4'
   ClientHeight = 780
   ClientWidth = 937
   Color = 16702880
+  DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.8.0.6'
   object Memo1: TMemo
     Left = 249
     Height = 514

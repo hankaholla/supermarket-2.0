@@ -1,19 +1,20 @@
 object Form3: TForm3
-  Left = 427
+  Left = 539
   Height = 780
-  Top = 155
+  Top = 230
   Width = 937
   Caption = 'Form3'
   ClientHeight = 780
   ClientWidth = 937
   Color = 16702880
+  DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.8.0.6'
   object Button1: TButton
     Left = 40
     Height = 42
-    Top = 109
+    Top = 296
     Width = 154
     Caption = 'Mrazene'
     OnClick = Button1Click
@@ -22,35 +23,43 @@ object Form3: TForm3
   object Button2: TButton
     Left = 40
     Height = 42
-    Top = 163
+    Top = 360
     Width = 154
     Caption = 'Pečivo'
     OnClick = Button2Click
     TabOrder = 1
   end
   object Button3: TButton
-    Left = 42
+    Left = 40
     Height = 42
-    Top = 223
+    Top = 424
     Width = 154
     Caption = 'Ovocíčko'
     OnClick = Button3Click
     TabOrder = 2
   end
   object Image1: TImage
-    Left = 237
+    Left = 264
     Height = 509
-    Top = 109
+    Top = 176
     Width = 549
     OnClick = Image1Click
   end
   object Button4: TButton
     Left = 40
-    Height = 21
-    Top = 23
-    Width = 69
-    Caption = 'Späť'
+    Height = 65
+    Top = 88
+    Width = 80
+    Caption = ''
+    Font.CharSet = SYMBOL_CHARSET
+    Font.Color = clPurple
+    Font.Height = -48
+    Font.Name = 'Wingdings 3'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     OnClick = Button4Click
+    ParentFont = False
     TabOrder = 3
   end
   object Label4: TLabel
@@ -72,11 +81,11 @@ object Form3: TForm3
     OptimalFill = True
   end
   object Label1: TLabel
-    Left = 537
+    Left = 40
     Height = 25
     Top = 16
-    Width = 76
-    Caption = 'Pokladnik'
+    Width = 80
+    Caption = 'Pokladnik:'
     ParentColor = False
   end
 end

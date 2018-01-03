@@ -17,7 +17,6 @@ type
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
-    Button6: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     Image1: TImage;
@@ -34,7 +33,6 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -45,12 +43,12 @@ type
     { public declarations }
   end;
 type zaznam1=record
+      kod: string;
       nazov: string;
-      kod: integer;
  end;
  type zaznam2=record
        nazov: string;
-       kod: integer;
+       kod: string;
        mnozstvo: integer;
  end;
 
@@ -59,7 +57,8 @@ var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..n] of zaznam1;
     kupovane: array[1..n] of zaznam2;
   subor,subor1: textfile;
-  kod_tovaru,mnozstvo,spolu: integer;
+  mnozstvo,spolu: integer;
+  kod_tovaru:string;
   Form2: TForm2;
 
 implementation
@@ -76,7 +75,7 @@ var l,k,h,nasiel_som: integer;
 begin
   nasiel_som:=0;
   mnozstvo:=strtoint(edit2.text);
-  kod_tovaru:=strtoint(edit1.text);
+  kod_tovaru:=edit1.text;
   k:=0;                                      //NEFUNGUJE = krevety
 
   for k:= 1 to n do
@@ -85,27 +84,23 @@ begin
                                          kupovane[k].kod:=kod_tovaru;
                                          kupovane[k].mnozstvo:=mnozstvo;
                                          kupovane[k].nazov:=zoznam[k].nazov;
-                                         nasiel_som:=1;
+                                         //nasiel_som:=1;
 
                                          Memo2.Append(kupovane[k].nazov+' '+inttostr(kupovane[k].mnozstvo));
-                                         end;
-        if nasiel_som=0 then begin
+                                         end
+        {if nasiel_som=0} else begin
                              label6.caption:='Chyba!';
                              end;
 
         //treba vyhodit vynimku
         end;
 
-
-
-
-
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
 Form1.Show;
-Form1.edit1.clear;
+//Form1.edit1.clear;
 Form1.edit2.clear;
 Form1.label7.visible:=False;
 
@@ -126,7 +121,7 @@ begin
  Form4.Show;
 end;
 
-procedure TForm2.Button6Click(Sender: TObject);  //storno
+{procedure TForm2.Button6Click(Sender: TObject);  //storno
 var k,h: integer;
 begin
 
@@ -143,7 +138,7 @@ begin
 
  for h:= 1 to spolu do
      memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
-end;
+end; }
 procedure TForm2.Edit1Click(Sender: TObject);
 begin
   Edit1.Clear;
@@ -158,8 +153,9 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 var x,y,i,j: integer;
+    znak,cislo:char;
 begin
- assignfile(subor,'najpredavanejsie.txt');
+ assignfile(subor,'STATISTIKA.txt');
  reset(subor);
  i:=0;
  x:=20;
@@ -176,26 +172,48 @@ spolu:=0;
        begin
          inc(i);
 
-         readln(subor,najpredavanejsie[i].nazov);
-         readln(subor,najpredavanejsie[i].kod);
+         read(subor,cislo);
+         repeat
+            najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
+            read(subor,cislo);
+         until cislo=';';
+
+         //read(subor,najpredavanejsie[i].kod);
+
+         read(subor,znak);
+         repeat
+            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
+            read(subor,znak);
+         until eoln(subor);
+
 
          Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);
          end;
 
-assignfile(subor1,'zoznam.txt');
+assignfile(subor1,'TOVAR.txt');
 reset(subor1);
 j:=0;
 
-Image1.Canvas.FillRect(clientrect);
-
-while not eof (subor1) do
+while not eof(subor1) do
       begin
         inc(j);
 
-        readln(subor1,zoznam[j].nazov);
-        readln(subor1,zoznam[j].kod);
+        read(subor,cislo);
+         repeat
+            zoznam[j].kod:=zoznam[j].kod+cislo;
+            read(subor,cislo);
+         until cislo=';';
 
-       memo1.append(zoznam[j].nazov +' ' + inttostr(zoznam[j].kod));
+         //read(subor,najpredavanejsie[i].kod);
+
+         read(subor,znak);
+         repeat
+            zoznam[j].nazov:=zoznam[j].nazov+znak;
+            read(subor,znak);
+         until eoln(subor);
+         readln(subor);
+
+       memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);
       end;
 
  label6.visible:=false;
