@@ -31,6 +31,8 @@ var
   Form4: TForm4;
 
 implementation
+uses
+  Unit1,Unit2;
 
 {$R *.lfm}
 
