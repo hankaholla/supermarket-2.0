@@ -1,9 +1,9 @@
 object Form3: TForm3
-  Left = 818
+  Left = 845
   Height = 780
-  Top = 195
+  Top = 36
   Width = 937
-  Caption = 'Form3'
+  Caption = 'Sekcie zoznamu'
   ClientHeight = 780
   ClientWidth = 937
   Color = 16702880
@@ -100,19 +100,28 @@ object Form3: TForm3
   object Button6: TButton
     Left = 40
     Height = 46
-    Top = 496
+    Top = 576
     Width = 153
     Caption = 'Drogéria'
     OnClick = Button6Click
     TabOrder = 5
   end
   object Button7: TButton
-    Left = 640
+    Left = 664
     Height = 43
     Top = 53
     Width = 125
     Caption = 'Odhlásiť sa'
     OnClick = Button7Click
     TabOrder = 6
+  end
+  object Button8: TButton
+    Left = 40
+    Height = 48
+    Top = 496
+    Width = 153
+    Caption = 'Mäso'
+    OnClick = Button8Click
+    TabOrder = 7
   end
 end

@@ -21,7 +21,6 @@ type
     Label5: TLabel;
     Label7: TLabel;
     procedure Button1Click(Sender: TObject);
-    procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
@@ -45,7 +44,7 @@ var zamestnanci: array [1..n] of zaznam;
 
 implementation
 uses
-  Unit2,Unit3;
+  Unit2,Unit3,Unit4;
 
 {$R *.lfm}
 
@@ -103,11 +102,6 @@ for j:= 1 to n do
            end;
     end;
 
-end;
-
-procedure TForm1.Edit1Click(Sender: TObject);
-begin
-  //edit1.clear;
 end;
 
 procedure TForm1.Edit2Click(Sender: TObject);

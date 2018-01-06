@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 666
+  Left = 622
   Height = 780
-  Top = 151
+  Top = 121
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -14,9 +14,9 @@ object Form2: TForm2
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Button1: TButton
-    Left = 40
+    Left = 80
     Height = 45
-    Top = 520
+    Top = 680
     Width = 105
     Caption = 'POTVRDIŤ'
     OnClick = Button1Click
@@ -34,16 +34,16 @@ object Form2: TForm2
   object Button3: TButton
     Left = 16
     Height = 49
-    Top = 136
+    Top = 202
     Width = 200
     Caption = 'Kompletny zoznam'
     OnClick = Button3Click
     TabOrder = 2
   end
   object Button5: TButton
-    Left = 600
+    Left = 632
     Height = 40
-    Top = 624
+    Top = 688
     Width = 206
     Caption = 'VYÚČTUJ'
     Font.CharSet = EASTEUROPE_CHARSET
@@ -56,9 +56,9 @@ object Form2: TForm2
     TabOrder = 3
   end
   object Label1: TLabel
-    Left = 44
+    Left = 40
     Height = 25
-    Top = 328
+    Top = 552
     Width = 88
     Caption = 'Kód tovaru'
     ParentColor = False
@@ -66,7 +66,7 @@ object Form2: TForm2
   object Label2: TLabel
     Left = 40
     Height = 25
-    Top = 424
+    Top = 616
     Width = 79
     Caption = 'Množstvo'
     ParentColor = False
@@ -93,27 +93,27 @@ object Form2: TForm2
     Width = 309
   end
   object Edit1: TEdit
-    Left = 44
+    Left = 152
     Height = 33
-    Top = 368
+    Top = 552
     Width = 75
     OnClick = Edit1Click
     TabOrder = 4
     Text = '000000'
   end
   object Edit2: TEdit
-    Left = 40
+    Left = 152
     Height = 33
-    Top = 464
+    Top = 616
     Width = 75
     OnClick = Edit2Click
     TabOrder = 5
     Text = '00'
   end
   object Memo2: TMemo
-    Left = 576
+    Left = 616
     Height = 325
-    Top = 201
+    Top = 202
     Width = 220
     HelpType = htKeyword
     HelpKeyword = 'uctenka'
@@ -150,9 +150,9 @@ object Form2: TForm2
     OnClick = Label5Click
   end
   object Label6: TLabel
-    Left = 40
+    Left = 264
     Height = 25
-    Top = 592
+    Top = 552
     Width = 51
     Caption = 'Label6'
     ParentColor = False
@@ -170,7 +170,7 @@ object Form2: TForm2
   object Label7: TLabel
     Left = 24
     Height = 33
-    Top = 272
+    Top = 496
     Width = 195
     Caption = 'Manuálny nákup:'
     Font.CharSet = EASTEUROPE_CHARSET

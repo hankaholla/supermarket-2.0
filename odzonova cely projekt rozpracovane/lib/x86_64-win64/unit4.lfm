@@ -1,7 +1,7 @@
 object Form4: TForm4
-  Left = 926
+  Left = 503
   Height = 780
-  Top = 164
+  Top = 115
   Width = 937
   Caption = 'Účet - koniec nákupu'
   ClientHeight = 780

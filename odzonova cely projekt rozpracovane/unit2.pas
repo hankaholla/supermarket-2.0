@@ -23,17 +23,16 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
@@ -44,24 +43,35 @@ type
   public
     { public declarations }
   end;
-type zaznam1=record
+type zaznam1=record       //zoznam+najpredavanejsie
       kod: string;
       nazov: string;
  end;
- type zaznam2=record
+ type zaznam2=record     //nakupene
        nazov: string;
        kod: string;
        mnozstvo: integer;
+       cena:real;
  end;
-
+type zaznam3=record  //cennik
+      kod:string;
+      bc1:char;
+      cenan:real;
+      bc2:char;
+      cenap:real;
+      end;
 const n=100;
+
 var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..n] of zaznam1;
     kupovane: array[1..n] of zaznam2;
-  subor,subor1: textfile;
-  mnozstvo,spolu: integer;
-  kod_tovaru:string;
-  Form2: TForm2;
+    cennik:array[1..n] of zaznam3;
+
+    subor,subor1,subor2: textfile;
+    mnozstvo,spolu,nakupujem: integer;
+    kod_tovaru:string;
+
+    Form2: TForm2;
 
 implementation
 uses
@@ -74,48 +84,46 @@ uses
 
 procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
 var l,k,h,nasiel_som: integer;
+    cena:real;
 begin
-  nasiel_som:=0;
-  mnozstvo:=strtoint(edit2.text);
-  kod_tovaru:=edit1.text;
-  k:=0;                                      //NEFUNGUJE = krevety
+nasiel_som:=0;    //wtf?
+mnozstvo:=strtoint(edit2.text);
+kod_tovaru:=edit1.text;
+k:=0;
+cena:=0;
 
-  for k:= 1 to n do
-      begin
-        if (kod_tovaru=zoznam[k].kod) then begin
-                                         kupovane[k].kod:=kod_tovaru;
-                                         kupovane[k].mnozstvo:=mnozstvo;
-                                         kupovane[k].nazov:=zoznam[k].nazov;
-                                         //nasiel_som:=1;
-
-                                         Memo2.Append(kupovane[k].nazov+' '+inttostr(kupovane[k].mnozstvo));
+for k:= 1 to n do
+    begin
+      if (kod_tovaru=zoznam[k].kod) then begin    //ak sa zadany kod nachadza zapisuj
+                                           if (kod_tovaru=cennik[k].kod) then begin
+                                                                                 kupovane[k].kod:=kod_tovaru;
+                                                                                 kupovane[k].mnozstvo:=mnozstvo;
+                                                                                 kupovane[k].nazov:=zoznam[k].nazov;
+                                                                                 cena:=(mnozstvo*cennik[k].cenap);
+                                                                                 kupovane[k].cena:=cena;
+                                                                                 Memo2.Append(kupovane[k].nazov+' x '+inttostr(kupovane[k].mnozstvo)+'   '+floattostr(cena))
+                                                                               end
                                          end
-        {if nasiel_som=0} else begin
-                             label6.caption:='Chyba!';
-                             end;
+                                    else begin
+                                           label6.caption:='Chybný kód, skúste ešte raz!';
+                                         end;
 
-        //treba vyhodit vynimku
-        end;
-
+      //treba vyhodit vynimku
+      end;
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
 Form1.Show;
-//Form1.edit1.clear;
 Form1.edit2.clear;
 Form1.label7.visible:=False;
+
 
 end;
 
 procedure TForm2.Button3Click(Sender: TObject);
 begin
   Form3.Show;
-end;
-
-procedure TForm2.Button4Click(Sender: TObject);
-begin
-
 end;
 
 procedure TForm2.Button5Click(Sender: TObject);
@@ -155,23 +163,24 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var x,y,i,j: integer;
-    znak,cislo:char;
+var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
+    znak,cislo,cislo2:char;
+    line:string;
 begin
- assignfile(subor,'STATISTIKA.txt');
- reset(subor);
- i:=0;
- x:=20;
- y:=20;
+memo2.clear;
+Memo2.Append('Váš účet');
+Memo2.Lines.Add(' ');
+
+
+assignfile(subor,'STATISTIKA.txt');    //nacitava 10 najpredavanejsich
+reset(subor);
+i:=0;
+x:=20;
+y:=20;
 spolu:=0;
- memo2.clear;
 
 
-
- Image1.Canvas.FillRect(clientrect);
- Memo2.Append('ÚČTENKA');
-
- while not eof (subor) do
+ while not eof (subor) do   //subor statistika - 10
        begin
          inc(i);
 
@@ -190,12 +199,13 @@ spolu:=0;
          until eoln(subor);
 
 
-         Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);
+         Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);  //nahradit listboxom
          end;
 
-assignfile(subor1,'TOVAR.txt');
+assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
 j:=0;
+read(subor,pocetriadkov);
 
 while not eof(subor1) do
       begin
@@ -216,10 +226,29 @@ while not eof(subor1) do
          until eoln(subor);
          readln(subor);
 
-       memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);
+       memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
       end;
-
  label6.visible:=false;
+
+  assignfile(subor2,'CENNIK.txt');
+  reset(subor2);
+  read(subor2,pocetriadkov2);
+  i:=0;
+
+  while not eof(subor2) do
+        begin
+          inc(i);
+          ReadLn(subor2,line);
+          SScanf(line,'%d %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
+
+
+        end;
+  {For i:=1 to pocetriadkov2 do
+      begin
+      Memo1.Append(inttostr(cennik[i].kod));
+      Memo1.Append(floattostr(cennik[i].cenan));
+      Memo1.Append(floattostr(cennik[i].cenap));
+      end; }
 
 end;
 
