@@ -1,7 +1,7 @@
 object Form4: TForm4
-  Left = 503
+  Left = 1081
   Height = 780
-  Top = 115
+  Top = 189
   Width = 937
   Caption = 'Účet - koniec nákupu'
   ClientHeight = 780
@@ -36,24 +36,6 @@ object Form4: TForm4
     ParentColor = False
     ParentFont = False
   end
-  object Label4: TLabel
-    Left = 771
-    Height = 15
-    Top = 16
-    Width = 76
-    AutoSize = False
-    Caption = 'HNILLA'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clPurple
-    Font.Height = 15
-    Font.Name = 'Perpetua Titling MT'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OptimalFill = True
-  end
   object Label2: TLabel
     Left = 549
     Height = 41
@@ -86,5 +68,23 @@ object Form4: TForm4
     Caption = 'Nový nákup'
     OnClick = Button1Click
     TabOrder = 2
+  end
+  object Label9: TLabel
+    Left = 826
+    Height = 15
+    Top = 24
+    Width = 76
+    AutoSize = False
+    Caption = 'HNILLA'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = 15
+    Font.Name = 'Perpetua Titling MT'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
   end
 end

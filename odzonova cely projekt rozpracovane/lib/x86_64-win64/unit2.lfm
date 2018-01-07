@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 622
+  Left = 817
   Height = 780
-  Top = 121
+  Top = 172
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -23,9 +23,9 @@ object Form2: TForm2
     TabOrder = 0
   end
   object Button2: TButton
-    Left = 600
+    Left = 744
     Height = 43
-    Top = 53
+    Top = 56
     Width = 136
     Caption = 'Odhlásiť sa'
     OnClick = Button2Click
@@ -41,9 +41,9 @@ object Form2: TForm2
     TabOrder = 2
   end
   object Button5: TButton
-    Left = 632
+    Left = 696
     Height = 40
-    Top = 688
+    Top = 685
     Width = 206
     Caption = 'VYÚČTUJ'
     Font.CharSet = EASTEUROPE_CHARSET
@@ -114,31 +114,15 @@ object Form2: TForm2
     Left = 616
     Height = 325
     Top = 202
-    Width = 220
+    Width = 286
     HelpType = htKeyword
     HelpKeyword = 'uctenka'
+    Color = clInfoBk
     Lines.Strings = (
       'Memo2'
     )
+    ScrollBars = ssVertical
     TabOrder = 6
-  end
-  object Label4: TLabel
-    Left = 681
-    Height = 14
-    Top = 21
-    Width = 65
-    AutoSize = False
-    Caption = 'HNILLA'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clPurple
-    Font.Height = 14
-    Font.Name = 'Perpetua Titling MT'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OptimalFill = True
   end
   object Label5: TLabel
     Left = 24
@@ -194,5 +178,23 @@ object Form2: TForm2
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 826
+    Height = 15
+    Top = 24
+    Width = 76
+    AutoSize = False
+    Caption = 'HNILLA'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = 15
+    Font.Name = 'Perpetua Titling MT'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
   end
 end

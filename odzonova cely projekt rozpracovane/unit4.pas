@@ -29,6 +29,7 @@ type
 type zaznam=record
      kod:integer;
      nazov:string;
+     mnozstvo: integer;
      cena:real;
      end;
   const n=100;
@@ -59,6 +60,7 @@ For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
     begin
       kupovane[i].kod:=0;
       kupovane[i].nazov:=inttostr(0);
+      kupovane[i].mnozstvo:=0;
       kupovane[i].cena:=0;
     end;
 end;

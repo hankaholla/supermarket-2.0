@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 666
+  Left = 817
   Height = 780
-  Top = 140
+  Top = 172
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'

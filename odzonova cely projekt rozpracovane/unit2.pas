@@ -127,8 +127,13 @@ begin
 end;
 
 procedure TForm2.Button5Click(Sender: TObject);
+var cislonakupu:integer;
 begin
  Form4.Show;
+ assignfile(subor3,'KUPENE.txt');
+ rewrite(subor);
+
+ writeln(kupovane[1].kod
 
 end;
 
