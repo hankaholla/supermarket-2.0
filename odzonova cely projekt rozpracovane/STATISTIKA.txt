@@ -1,0 +1,10 @@
+113456;krevety
+117689;zeleninova zmes
+112234;pizza margherita
+223156;chlieb kvaskovy
+228976;donut cokoladovy
+225609;siska
+227856;toastovy chlieb
+331789;mango
+332456;hrozno
+331784;pomarance

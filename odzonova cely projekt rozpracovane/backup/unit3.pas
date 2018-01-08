@@ -23,7 +23,7 @@ type
     Button8: TButton;
     Image1: TImage;
     Label1: TLabel;
-    Label4: TLabel;
+    Label9: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -55,7 +55,7 @@ var
   zelenina:array[1..N]of zaznam;
   drogeria:array[1..N]of zaznam;
   maso:array[1..N]of zaznam;
-  subor1:textfile;
+  subor1,subor199:textfile;
   l,x,y,o,z,p,m,d:integer;
 
 implementation
@@ -137,29 +137,34 @@ For l:=1 to N do
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
-var i,j:integer;
+var i,j,www:integer;
   cislo:char;
 begin
 assignfile(subor1,'TOVAR.txt');
+assignfile(subor199,'JEBO.txt');
 reset(subor1);
-j:=0;
 
+j:=0;
+www:=0;
+readln(subor1);
 while not eof(subor1) do
+
       begin
         inc(j);
 
-        read(subor,cislo);
-         repeat
-            pole[j].kod:=pole[j].kod+cislo;
-            read(subor,cislo);
-         until cislo=';';
+         for i:=1 to 6 do
+             begin
+                 read(subor1,cislo);
+                 pole[j].kod:=pole[j].kod+cislo;
+             end;
+         read(subor1,cislo);
 
-         read(subor,znak);
+         read(subor1,znak);
          repeat
             pole[j].nazov:=pole[j].nazov+znak;
-            read(subor,znak);
-         until eoln(subor);
-         readln(subor);
+            read(subor1,znak);
+         until eoln(subor1);
+         readln(subor1);
       end;
 
 o:=0;

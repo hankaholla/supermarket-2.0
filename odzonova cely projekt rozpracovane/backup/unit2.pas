@@ -67,7 +67,7 @@ var zoznam: array[1..n] of zaznam1;
     kupovane: array[1..n] of zaznam2;
     cennik:array[1..n] of zaznam3;
 
-    subor,subor1,subor2: textfile;
+    subor,subor1,subor2,subor3: textfile;
     mnozstvo,spolu,nakupujem: integer;
     kod_tovaru:string;
 
@@ -83,10 +83,10 @@ uses
 { TForm2 }
 
 procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
-var l,k,h,nasiel_som: integer;
+var l,k,h: integer;
     cena:real;
 begin
-nasiel_som:=0;    //wtf?
+
 mnozstvo:=strtoint(edit2.text);
 kod_tovaru:=edit1.text;
 k:=0;
@@ -127,10 +127,15 @@ begin
 end;
 
 procedure TForm2.Button5Click(Sender: TObject);
+var cislonakupu:integer;
 begin
  Form4.Show;
+ {assignfile(subor3,'KUPENE.txt');
+ rewrite(subor);
 
-end;
+ writeln(kupovane[1].kod
+
+end;}
 
 {procedure TForm2.Button6Click(Sender: TObject);  //storno
 var k,h: integer;
@@ -150,6 +155,9 @@ begin
  for h:= 1 to spolu do
      memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
 end; }
+
+end;
+
 procedure TForm2.Edit1Click(Sender: TObject);
 begin
   Edit1.Clear;
@@ -184,11 +192,13 @@ spolu:=0;
        begin
          inc(i);
 
-         read(subor,cislo);
-         repeat
-            najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
+          for i:=1 to 6 do
+              begin
+                read(subor,cislo);
+                najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
+              end;
             read(subor,cislo);
-         until cislo=';';
+
 
          //read(subor,najpredavanejsie[i].kod);
 
@@ -205,26 +215,31 @@ spolu:=0;
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
 j:=0;
-read(subor,pocetriadkov);
+read(subor1,pocetriadkov);
 
 while not eof(subor1) do
       begin
         inc(j);
+          For i:=1 to 6 do
+             begin
+               read(subor1,cislo);
+               zoznam[j].kod:=zoznam[j].kod+cislo;
+              end;
+            read(subor1,cislo);
 
-        read(subor,cislo);
-         repeat
-            zoznam[j].kod:=zoznam[j].kod+cislo;
-            read(subor,cislo);
-         until cislo=';';
+         //until cislo=';';
 
          //read(subor,najpredavanejsie[i].kod);
 
-         read(subor,znak);
+         read(subor1,znak);
          repeat
             zoznam[j].nazov:=zoznam[j].nazov+znak;
-            read(subor,znak);
-         until eoln(subor);
-         readln(subor);
+            read(subor1,znak);
+         until eoln(subor1);
+
+
+
+         //readln(subor1);
 
        memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
       end;

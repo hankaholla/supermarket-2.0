@@ -17,7 +17,6 @@ type
     Button2: TButton;
     Button3: TButton;
     Button5: TButton;
-    Button6: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     Image1: TImage;
@@ -35,7 +34,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -45,22 +43,13 @@ type
   public
     { public declarations }
   end;
-<<<<<<< HEAD
-<<<<<<< HEAD
 type zaznam1=record       //zoznam+najpredavanejsie
       kod: string;
-=======
-type zaznam1=record
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
-type zaznam1=record
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
       nazov: string;
-      kod: integer;
  end;
  type zaznam2=record     //nakupene
        nazov: string;
-       kod: integer;
+       kod: string;
        mnozstvo: integer;
        cena:real;
  end;
@@ -76,19 +65,13 @@ const n=100;
 var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..n] of zaznam1;
     kupovane: array[1..n] of zaznam2;
-<<<<<<< HEAD
     cennik:array[1..n] of zaznam3;
 
-    subor,subor1,subor2: textfile;
+    subor,subor1,subor2,subor3: textfile;
     mnozstvo,spolu,nakupujem: integer;
     kod_tovaru:string;
 
     Form2: TForm2;
-=======
-  subor,subor1: textfile;
-  kod_tovaru,mnozstvo,spolu: integer;
-  Form2: TForm2;
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 
 implementation
 uses
@@ -100,11 +83,10 @@ uses
 { TForm2 }
 
 procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
-var l,k,h,nasiel_som: integer;
+var l,k,h: integer;
     cena:real;
 begin
-<<<<<<< HEAD
-nasiel_som:=0;    //wtf?
+
 mnozstvo:=strtoint(edit2.text);
 kod_tovaru:=edit1.text;
 k:=0;
@@ -128,50 +110,11 @@ for k:= 1 to n do
 
       //treba vyhodit vynimku
       end;
-=======
-  nasiel_som:=0;
-  mnozstvo:=strtoint(edit2.text);
-  kod_tovaru:=strtoint(edit1.text);
-  k:=0;                                      //NEFUNGUJE = krevety
-
-  for k:= 1 to n do
-      begin
-        if (kod_tovaru=zoznam[k].kod) then begin
-                                         kupovane[k].kod:=kod_tovaru;
-                                         kupovane[k].mnozstvo:=mnozstvo;
-                                         kupovane[k].nazov:=zoznam[k].nazov;
-                                         nasiel_som:=1;
-
-                                         Memo2.Append(kupovane[k].nazov+' '+inttostr(kupovane[k].mnozstvo));
-                                         end;
-        if nasiel_som=0 then begin
-                             label6.caption:='Chyba!';
-                             end;
-
-        //treba vyhodit vynimku
-        end;
-
-
-
-
-
-<<<<<<< HEAD
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
 Form1.Show;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-Form1.edit1.clear;
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
-Form1.edit1.clear;
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 Form1.edit2.clear;
 Form1.label7.visible:=False;
 
@@ -187,14 +130,14 @@ procedure TForm2.Button5Click(Sender: TObject);
 var cislonakupu:integer;
 begin
  Form4.Show;
- assignfile(subor3,'KUPENE.txt');
+ {assignfile(subor3,'KUPENE.txt');
  rewrite(subor);
 
  writeln(kupovane[1].kod
 
-end;
+end;}
 
-procedure TForm2.Button6Click(Sender: TObject);  //storno
+{procedure TForm2.Button6Click(Sender: TObject);  //storno
 var k,h: integer;
 begin
 
@@ -211,7 +154,10 @@ begin
 
  for h:= 1 to spolu do
      memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
+end; }
+
 end;
+
 procedure TForm2.Edit1Click(Sender: TObject);
 begin
   Edit1.Clear;
@@ -225,7 +171,6 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-<<<<<<< HEAD
 var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
     znak,cislo,cislo2:char;
     line:string;
@@ -233,17 +178,6 @@ begin
 memo2.clear;
 Memo2.Append('Váš účet');
 Memo2.Lines.Add(' ');
-=======
-var x,y,i,j: integer;
-begin
- assignfile(subor,'najpredavanejsie.txt');
- reset(subor);
- i:=0;
- x:=20;
- y:=20;
-spolu:=0;
- memo2.clear;
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 
 
 assignfile(subor,'STATISTIKA.txt');    //nacitava 10 najpredavanejsich
@@ -258,48 +192,57 @@ spolu:=0;
        begin
          inc(i);
 
-         readln(subor,najpredavanejsie[i].nazov);
-         readln(subor,najpredavanejsie[i].kod);
+          for i:=1 to 6 do
+              begin
+                read(subor,cislo);
+                najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
+              end;
+            read(subor,cislo);
 
-<<<<<<< HEAD
+
+         //read(subor,najpredavanejsie[i].kod);
+
+         read(subor,znak);
+         repeat
+            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
+            read(subor,znak);
+         until eoln(subor);
+
+
          Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);  //nahradit listboxom
          end;
 
-<<<<<<< HEAD
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
-=======
-assignfile(subor1,'zoznam.txt');
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
-         Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);
-         end;
-
-assignfile(subor1,'zoznam.txt');
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 reset(subor1);
 j:=0;
-read(subor,pocetriadkov);
+read(subor1,pocetriadkov);
 
-Image1.Canvas.FillRect(clientrect);
-
-<<<<<<< HEAD
-=======
-Image1.Canvas.FillRect(clientrect);
-
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-while not eof (subor1) do
+while not eof(subor1) do
       begin
         inc(j);
+          For i:=1 to 6 do
+             begin
+               read(subor1,cislo);
+               zoznam[j].kod:=zoznam[j].kod+cislo;
+              end;
+            read(subor1,cislo);
 
-        readln(subor1,zoznam[j].nazov);
-        readln(subor1,zoznam[j].kod);
-<<<<<<< HEAD
+         //until cislo=';';
 
-<<<<<<< HEAD
+         //read(subor,najpredavanejsie[i].kod);
+
+         read(subor1,znak);
+         repeat
+            zoznam[j].nazov:=zoznam[j].nazov+znak;
+            read(subor1,znak);
+
+         until eoln(subor1);
+
+
+
+         //readln(subor1);
+
        memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
-=======
-       memo1.append(zoznam[j].nazov +' ' + inttostr(zoznam[j].kod));
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
       end;
  label6.visible:=false;
 
@@ -313,11 +256,6 @@ while not eof (subor1) do
           inc(i);
           ReadLn(subor2,line);
           SScanf(line,'%d %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
-=======
-
-       memo1.append(zoznam[j].nazov +' ' + inttostr(zoznam[j].kod));
-      end;
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 
 
         end;

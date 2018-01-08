@@ -36,7 +36,7 @@ type zaznam=record
 end;
 const n=10;
 var zamestnanci: array [1..n] of zaznam;
-    subor: textfile;
+    subor,subor99: textfile;
     znak: char;
     heslo:integer;
     meno: string;
@@ -54,6 +54,11 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
+  assignfile(subor99,'koktina.txt');
+  rewrite(subor99);
+  writeln(subor99,'blabla');
+  closefile(subor99);
+
 
   assignfile(subor,'pokladnici.txt');
   reset(subor);
@@ -69,6 +74,7 @@ begin
           //memo1.append(inttostr(zamestnanci[i].heslo));
 
         end;
+
 
 end;
 

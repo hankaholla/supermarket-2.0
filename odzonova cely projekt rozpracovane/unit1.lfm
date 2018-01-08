@@ -1,41 +1,21 @@
 object Form1: TForm1
-<<<<<<< HEAD
-<<<<<<< HEAD
-  Left = 544
+  Left = 848
   Height = 748
-  Top = 87
-=======
-  Left = 929
-  Height = 780
-  Top = 151
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
-  Left = 929
-  Height = 780
-  Top = 151
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
+  Top = 280
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 748
   ClientWidth = 937
   Color = 16702880
+  DesignTimePPI = 144
   OnCreate = FormCreate
-<<<<<<< HEAD
-<<<<<<< HEAD
   Position = poScreenCenter
   LCLVersion = '1.8.0.6'
-=======
-  Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-=======
-  Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
+  Visible = True
   object Button1: TButton
-    Left = 617
+    Left = 592
     Height = 75
-    Top = 518
+    Top = 552
     Width = 183
     Caption = 'PRIHLÁSIŤ'
     Font.CharSet = EASTEUROPE_CHARSET
@@ -48,24 +28,16 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
   end
-  object Edit1: TEdit
-    Left = 397
-    Height = 33
-    Top = 378
-    Width = 117
-    OnClick = Edit1Click
-    TabOrder = 1
-  end
   object Edit2: TEdit
-    Left = 397
+    Left = 432
     Height = 33
-    Top = 430
+    Top = 376
     Width = 117
     EchoMode = emPassword
     OnClick = Edit2Click
     ParentShowHint = False
     PasswordChar = '*'
-    TabOrder = 2
+    TabOrder = 1
   end
   object Label1: TLabel
     Left = 272
@@ -134,9 +106,9 @@ object Form1: TForm1
     OnClick = Label4Click
   end
   object Label5: TLabel
-    Left = 309
+    Left = 320
     Height = 42
-    Top = 430
+    Top = 376
     Width = 67
     Caption = 'heslo'
     Font.CharSet = ANSI_CHARSET
@@ -147,35 +119,12 @@ object Form1: TForm1
     ParentColor = False
     ParentFont = False
   end
-  object Label6: TLabel
-    Left = 309
-    Height = 42
-    Top = 371
-    Width = 73
-    Caption = 'meno'
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -36
-    Font.Name = 'Perpetua'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
-  end
   object Label7: TLabel
-    Left = 256
+    Left = 328
     Height = 44
-<<<<<<< HEAD
-<<<<<<< HEAD
     Top = 464
     Width = 307
     Caption = 'CHYBNÉ PRIHLASOVACIE ÚDAJE!'#13#10'SKÚSTE ZNOVU'
-=======
-=======
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
-    Top = 518
-    Width = 306
-    Caption = 'CHYBNE PRIHLASOVACIE UDAJE!'#13#10'SKUSTE ZNOVU'
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Height = -20
     Font.Name = 'Times New Roman'

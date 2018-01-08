@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 544
+  Left = 848
   Height = 748
-  Top = 87
+  Top = 280
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 748
@@ -11,6 +11,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.8.0.6'
+  Visible = True
   object Button1: TButton
     Left = 592
     Height = 75

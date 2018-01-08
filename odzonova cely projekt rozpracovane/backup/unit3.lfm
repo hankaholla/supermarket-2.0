@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 845
+  Left = 829
   Height = 780
-  Top = 36
+  Top = 195
   Width = 937
   Caption = 'Sekcie zoznamu'
   ClientHeight = 780
@@ -62,24 +62,6 @@ object Form3: TForm3
     ParentFont = False
     TabOrder = 3
   end
-  object Label4: TLabel
-    Left = 735
-    Height = 14
-    Top = 16
-    Width = 72
-    AutoSize = False
-    Caption = 'HNILLA'
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clPurple
-    Font.Height = 14
-    Font.Name = 'Perpetua Titling MT'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    OptimalFill = True
-  end
   object Label1: TLabel
     Left = 40
     Height = 25
@@ -107,9 +89,9 @@ object Form3: TForm3
     TabOrder = 5
   end
   object Button7: TButton
-    Left = 664
+    Left = 752
     Height = 43
-    Top = 53
+    Top = 56
     Width = 125
     Caption = 'Odhlásiť sa'
     OnClick = Button7Click
@@ -123,5 +105,23 @@ object Form3: TForm3
     Caption = 'Mäso'
     OnClick = Button8Click
     TabOrder = 7
+  end
+  object Label9: TLabel
+    Left = 826
+    Height = 15
+    Top = 24
+    Width = 76
+    AutoSize = False
+    Caption = 'HNILLA'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = 15
+    Font.Name = 'Perpetua Titling MT'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
   end
 end

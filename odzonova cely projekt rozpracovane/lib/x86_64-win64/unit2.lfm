@@ -14,9 +14,9 @@ object Form2: TForm2
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Button1: TButton
-    Left = 80
+    Left = 272
     Height = 45
-    Top = 680
+    Top = 600
     Width = 105
     Caption = 'POTVRDIŤ'
     OnClick = Button1Click
@@ -43,7 +43,7 @@ object Form2: TForm2
   object Button5: TButton
     Left = 696
     Height = 40
-    Top = 685
+    Top = 552
     Width = 206
     Caption = 'VYÚČTUJ'
     Font.CharSet = EASTEUROPE_CHARSET

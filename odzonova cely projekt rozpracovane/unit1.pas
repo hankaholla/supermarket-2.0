@@ -13,14 +13,12 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Edit1: TEdit;
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
     Label7: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
@@ -38,7 +36,7 @@ type zaznam=record
 end;
 const n=10;
 var zamestnanci: array [1..n] of zaznam;
-    subor: textfile;
+    subor,subor99: textfile;
     znak: char;
     heslo:integer;
     meno: string;
@@ -56,8 +54,13 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
+  assignfile(subor99,'koktina.txt');
+  rewrite(subor99);
+  writeln(subor99,'blabla');
+  closefile(subor99);
 
-  assignfile(subor,'ZAMESTNANCI.txt');
+
+  assignfile(subor,'pokladnici.txt');
   reset(subor);
   i:=0;
   while not eof (subor) do
@@ -71,6 +74,7 @@ begin
           //memo1.append(inttostr(zamestnanci[i].heslo));
 
         end;
+
 
 end;
 
@@ -87,18 +91,17 @@ procedure TForm1.Button1Click(Sender: TObject);
 var j: integer;
 begin
 heslo:=strtoint(edit2.text);
-meno:= edit1.text;
+//meno:= edit1.text;
 label7.visible:=False;
 
 for j:= 1 to n do
     begin
-      if (meno=zamestnanci[j].meno) and (heslo=zamestnanci[j].heslo) then
-                                                                     begin
-                                                                     Form1.Visible:=False;
-                                                                     Form2.Show;
-                                                                     Form2.label5.caption:='Pokladnik: ' + meno;
-                                                                     Form3.label1.caption:='Pokladnik:'+ meno;
-                                                                     end
+      if (heslo=zamestnanci[j].heslo) then begin
+                                             Form1.Visible:=False;
+                                             Form2.Show;
+                                             Form2.label5.caption:='Pokladnik: ' + zamestnanci[j].meno;
+                                             Form3.label1.caption:='Pokladnik:'+ zamestnanci[j].meno;
+                                           end
       else begin
            label7.visible:=True;
            //label7.caption:='CHYBNE PRIHLASOVACIE UDAJE!SKUSTE ZNOVU';
@@ -107,14 +110,6 @@ for j:= 1 to n do
 
 end;
 
-<<<<<<< HEAD
-=======
-procedure TForm1.Edit1Click(Sender: TObject);
-begin
-  edit1.clear;
-end;
-
->>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 procedure TForm1.Edit2Click(Sender: TObject);
 begin
   edit2.clear;
