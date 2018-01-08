@@ -46,8 +46,12 @@ type
     { public declarations }
   end;
 <<<<<<< HEAD
+<<<<<<< HEAD
 type zaznam1=record       //zoznam+najpredavanejsie
       kod: string;
+=======
+type zaznam1=record
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
 type zaznam1=record
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
@@ -151,6 +155,9 @@ for k:= 1 to n do
 
 
 
+<<<<<<< HEAD
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
+=======
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 end;
 
@@ -158,6 +165,10 @@ procedure TForm2.Button2Click(Sender: TObject);
 begin
 Form1.Show;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+Form1.edit1.clear;
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
 Form1.edit1.clear;
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
@@ -250,6 +261,7 @@ spolu:=0;
          readln(subor,najpredavanejsie[i].nazov);
          readln(subor,najpredavanejsie[i].kod);
 
+<<<<<<< HEAD
          Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);  //nahradit listboxom
          end;
 
@@ -258,18 +270,30 @@ assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 =======
 assignfile(subor1,'zoznam.txt');
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
+=======
+         Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);
+         end;
+
+assignfile(subor1,'zoznam.txt');
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 reset(subor1);
 j:=0;
 read(subor,pocetriadkov);
 
 Image1.Canvas.FillRect(clientrect);
 
+<<<<<<< HEAD
+=======
+Image1.Canvas.FillRect(clientrect);
+
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 while not eof (subor1) do
       begin
         inc(j);
 
         readln(subor1,zoznam[j].nazov);
         readln(subor1,zoznam[j].kod);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
        memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
@@ -289,6 +313,11 @@ while not eof (subor1) do
           inc(i);
           ReadLn(subor2,line);
           SScanf(line,'%d %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
+=======
+
+       memo1.append(zoznam[j].nazov +' ' + inttostr(zoznam[j].kod));
+      end;
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 
 
         end;

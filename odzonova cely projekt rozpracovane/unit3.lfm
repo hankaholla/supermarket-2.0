@@ -1,8 +1,14 @@
 object Form3: TForm3
 <<<<<<< HEAD
+<<<<<<< HEAD
   Left = 615
   Height = 780
   Top = 104
+=======
+  Left = 427
+  Height = 780
+  Top = 155
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
   Left = 427
   Height = 780
@@ -20,7 +26,11 @@ object Form3: TForm3
     Left = 40
     Height = 42
 <<<<<<< HEAD
+<<<<<<< HEAD
     Top = 416
+=======
+    Top = 109
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
     Top = 109
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
@@ -33,7 +43,11 @@ object Form3: TForm3
     Left = 40
     Height = 42
 <<<<<<< HEAD
+<<<<<<< HEAD
     Top = 336
+=======
+    Top = 163
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
     Top = 163
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
@@ -46,7 +60,11 @@ object Form3: TForm3
     Left = 42
     Height = 42
 <<<<<<< HEAD
+<<<<<<< HEAD
     Top = 176
+=======
+    Top = 223
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
     Top = 223
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
@@ -57,7 +75,11 @@ object Form3: TForm3
   end
   object Image1: TImage
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 240
+=======
+    Left = 237
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
     Left = 237
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy

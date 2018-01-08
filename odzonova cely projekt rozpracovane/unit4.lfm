@@ -1,8 +1,14 @@
 object Form4: TForm4
 <<<<<<< HEAD
+<<<<<<< HEAD
   Left = 936
   Height = 780
   Top = 61
+=======
+  Left = 914
+  Height = 780
+  Top = 334
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
 =======
   Left = 914
   Height = 780

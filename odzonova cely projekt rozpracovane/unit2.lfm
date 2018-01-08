@@ -1,10 +1,13 @@
 object Form2: TForm2
 <<<<<<< HEAD
+<<<<<<< HEAD
   Left = 817
   Height = 780
   Top = 172
   Width = 937
 =======
+=======
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
   Left = 1032
   Height = 745
   Top = 200
@@ -30,11 +33,14 @@ object Form2: TForm2
   end
   object Button2: TButton
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 744
     Height = 43
     Top = 56
     Width = 136
 =======
+=======
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
     Left = 603
     Height = 27
     Top = 53
@@ -165,20 +171,27 @@ object Form2: TForm2
   end
   object Memo1: TMemo
 <<<<<<< HEAD
+<<<<<<< HEAD
     Left = 304
     Height = 194
     Top = 264
     Width = 184
 =======
+=======
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
     Left = 520
     Height = 322
     Top = 192
     Width = 310
+<<<<<<< HEAD
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
+=======
 >>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
     Lines.Strings = (
       'Memo1'
     )
     TabOrder = 8
+<<<<<<< HEAD
   end
   object Label7: TLabel
     Left = 24
@@ -225,5 +238,7 @@ object Form2: TForm2
     ParentColor = False
     ParentFont = False
     OptimalFill = True
+=======
+>>>>>>> parent of 868e913... Upraveny pokladnici+Form2 robi problemy
   end
 end
