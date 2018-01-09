@@ -22,6 +22,7 @@ type
     Label7: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
+    procedure Edit2Enter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
@@ -30,17 +31,17 @@ type
   public
     { public declarations }
   end;
-type zaznam=record
+type zaznam=record       //pokladnici.txt
      meno:string;
      heslo:integer;
 end;
 const n=10;
 var zamestnanci: array [1..n] of zaznam;
-    subor,subor99: textfile;
+    subor: textfile;
     znak: char;
     heslo:integer;
     meno: string;
-  Form1: TForm1;
+    Form1: TForm1;
 
 implementation
 uses
@@ -54,10 +55,10 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
-  assignfile(subor99,'koktina.txt');
+ { assignfile(subor99,'koktina.txt');
   rewrite(subor99);
   writeln(subor99,'blabla');
-  closefile(subor99);
+  closefile(subor99); }
 
 
   assignfile(subor,'pokladnici.txt');
@@ -66,15 +67,10 @@ begin
   while not eof (subor) do
         begin
           inc(i);
-
           readln(subor,zamestnanci[i].meno);
           readln(subor,zamestnanci[i].heslo);
-
-          //memo1.append(zamestnanci[i].meno);
-          //memo1.append(inttostr(zamestnanci[i].heslo));
-
         end;
-
+  label7.visible:=False;
 
 end;
 
@@ -91,7 +87,6 @@ procedure TForm1.Button1Click(Sender: TObject);
 var j: integer;
 begin
 heslo:=strtoint(edit2.text);
-//meno:= edit1.text;
 label7.visible:=False;
 
 for j:= 1 to n do
@@ -113,6 +108,27 @@ end;
 procedure TForm1.Edit2Click(Sender: TObject);
 begin
   edit2.clear;
+end;
+
+procedure TForm1.Edit2Enter(Sender: TObject);  //preco nefunguje
+var j,heslo:integer;
+begin
+{heslo:=strtoint(edit2.text);
+
+
+for j:= 1 to n do
+    begin
+      if (heslo=zamestnanci[j].heslo) then begin
+                                             Form1.Visible:=False;
+                                             Form2.Show;
+                                             Form2.label5.caption:='Pokladnik: ' + zamestnanci[j].meno;
+                                             Form3.label1.caption:='Pokladnik:'+ zamestnanci[j].meno;
+                                           end
+      else begin
+           label7.visible:=True;
+           //label7.caption:='CHYBNE PRIHLASOVACIE UDAJE!SKUSTE ZNOVU';
+           end;
+    end; }
 end;
 
 end.

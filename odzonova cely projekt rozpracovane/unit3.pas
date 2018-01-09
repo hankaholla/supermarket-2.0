@@ -24,6 +24,7 @@ type
     Image1: TImage;
     Label1: TLabel;
     Label9: TLabel;
+    Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure Button8Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
+    procedure Memo2Change(Sender: TObject);
   private
     { private declarations }
   public
@@ -43,7 +45,7 @@ type zaznam=record
      kod:string;
      nazov:string;
 end;
-const N=15;
+const N=30;
 
 var
   Form3: TForm3;
@@ -101,7 +103,7 @@ begin
  Form2.Show;
 end;
 
-procedure TForm3.Button5Click(Sender: TObject);
+procedure TForm3.Button5Click(Sender: TObject);    //zelenina
 begin
 x:=20;
  y:=20;
@@ -110,9 +112,9 @@ x:=20;
        Image1.Canvas.Textout(x,y*l,zelenina[l].nazov);
 end;
 
-procedure TForm3.Button6Click(Sender: TObject);
+procedure TForm3.Button6Click(Sender: TObject);   //drogeria
 begin
-   x:=20;
+  x:=20;
   y:=20;
     Image1.Canvas.Fillrect(Clientrect);
     For l:=1 to N do
@@ -127,7 +129,7 @@ Form1.edit2.clear;
 Form1.label7.visible:=False;
 end;
 
-procedure TForm3.Button8Click(Sender: TObject);
+procedure TForm3.Button8Click(Sender: TObject);    //maso
 begin
 x:=20;
 y:=20;
@@ -138,10 +140,12 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var i,j,www:integer;
-  cislo:char;
+  cislo,bc:char;
 begin
+memo2.Clear;
+memo2.append('Váš účet');
+
 assignfile(subor1,'TOVAR.txt');
-assignfile(subor199,'JEBO.txt');
 reset(subor1);
 
 j:=0;
@@ -157,13 +161,14 @@ while not eof(subor1) do
                  read(subor1,cislo);
                  pole[j].kod:=pole[j].kod+cislo;
              end;
-         read(subor1,cislo);
+         read(subor1,bc); //cita ;
 
-         read(subor1,znak);
+
          repeat
-            pole[j].nazov:=pole[j].nazov+znak;
             read(subor1,znak);
+            pole[j].nazov:=pole[j].nazov+znak;
          until eoln(subor1);
+
          readln(subor1);
       end;
 
@@ -213,6 +218,11 @@ For j:=1 to N do
 end;
 
 procedure TForm3.Image1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm3.Memo2Change(Sender: TObject);
 begin
 
 end;

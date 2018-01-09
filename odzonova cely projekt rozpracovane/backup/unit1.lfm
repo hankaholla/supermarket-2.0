@@ -1,23 +1,23 @@
 object Form1: TForm1
-  Left = 451
-  Height = 748
-  Top = 72
+  Left = 485
+  Height = 946
+  Top = 0
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
-  ClientHeight = 748
+  ClientHeight = 946
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
   OnCreate = FormCreate
-  Position = poScreenCenter
+  Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   Visible = True
   object Button1: TButton
-    Left = 592
-    Height = 75
-    Top = 552
-    Width = 183
-    Caption = 'PRIHLÁSIŤ'
+    Left = 568
+    Height = 64
+    Top = 536
+    Width = 207
+    Caption = 'PRIHLÁSIŤ SA'
     Font.CharSet = EASTEUROPE_CHARSET
     Font.Color = clBlack
     Font.Height = -28
@@ -31,10 +31,11 @@ object Form1: TForm1
   object Edit2: TEdit
     Left = 432
     Height = 33
-    Top = 376
-    Width = 117
+    Top = 368
+    Width = 112
     EchoMode = emPassword
     OnClick = Edit2Click
+    OnEnter = Edit2Enter
     ParentShowHint = False
     PasswordChar = '*'
     TabOrder = 1
@@ -106,9 +107,9 @@ object Form1: TForm1
     OnClick = Label4Click
   end
   object Label5: TLabel
-    Left = 320
+    Left = 336
     Height = 42
-    Top = 376
+    Top = 368
     Width = 67
     Caption = 'heslo'
     Font.CharSet = ANSI_CHARSET
@@ -122,7 +123,7 @@ object Form1: TForm1
   object Label7: TLabel
     Left = 328
     Height = 44
-    Top = 464
+    Top = 448
     Width = 307
     Caption = 'CHYBNÉ PRIHLASOVACIE ÚDAJE!'#13#10'SKÚSTE ZNOVU'
     Font.CharSet = EASTEUROPE_CHARSET

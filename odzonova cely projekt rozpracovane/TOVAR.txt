@@ -1,17 +1,32 @@
-15
-213456;krevety
-117689;zeleninova zmes
-112234;pizza margherita
-118906;pizza proscuitto
-112309;lesne plody
-229342;anglicky rozok
-224567;zemla fit
-223156;chlieb kvaskovy
-228976;donut cokoladovy
-225609;siska
-333311;jablka
-333987;hrusky
-331789;mango
-332456;hrozno
-331784;pomarance
+30
+143456;krevety
+147689;zeleninova zmes
+142234;pizza margherita
+148906;pizza proscuitto
+142309;lesne plody
+139342;anglicky rozok
+134567;zemla fit
+133156;chlieb kvaskovy
+138976;donut cokoladovy
+135609;siska
+113311;jablka
+113987;hrusky
+111789;mango
+112456;hrozno
+111784;pomarance
+129587;paradajky
+123546;uhorky
+120957;salat
+129456;paprika
+123425;kalerab
+158940;toaletny papier
+150947;mydlo
+156478;saponat
+159218;zubna pasta
+157407;handra special
+169478;kuracie prsia
+165647;prazska sunka
+161223;salama
+167483;slanina
+169827;bravcove pliecko
 

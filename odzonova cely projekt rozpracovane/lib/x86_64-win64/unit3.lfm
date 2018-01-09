@@ -1,10 +1,10 @@
 object Form3: TForm3
-  Left = 829
-  Height = 780
-  Top = 195
+  Left = 496
+  Height = 945
+  Top = 0
   Width = 937
   Caption = 'Sekcie zoznamu'
-  ClientHeight = 780
+  ClientHeight = 945
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
@@ -40,9 +40,9 @@ object Form3: TForm3
   end
   object Image1: TImage
     Left = 240
-    Height = 509
+    Height = 448
     Top = 176
-    Width = 549
+    Width = 325
     OnClick = Image1Click
   end
   object Button4: TButton
@@ -123,5 +123,20 @@ object Form3: TForm3
     ParentColor = False
     ParentFont = False
     OptimalFill = True
+  end
+  object Memo2: TMemo
+    Left = 592
+    Height = 446
+    Top = 176
+    Width = 286
+    HelpType = htKeyword
+    HelpKeyword = 'uctenka'
+    Color = clInfoBk
+    Lines.Strings = (
+      'Memo2'
+    )
+    OnChange = Memo2Change
+    ScrollBars = ssVertical
+    TabOrder = 8
   end
 end

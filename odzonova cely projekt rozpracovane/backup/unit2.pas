@@ -16,6 +16,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Button4: TButton;
     Button5: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -33,6 +34,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
@@ -126,25 +128,13 @@ begin
   Form3.Show;
 end;
 
-procedure TForm2.Button5Click(Sender: TObject);
-var cislonakupu:integer;
+procedure TForm2.Button4Click(Sender: TObject);
+var k,h:integer;
 begin
- Form4.Show;
- {assignfile(subor3,'KUPENE.txt');
- rewrite(subor);
-
- writeln(kupovane[1].kod
-
-end;}
-
-{procedure TForm2.Button6Click(Sender: TObject);  //storno
-var k,h: integer;
-begin
-
   for k:= 1 to n do
       begin
         if (kod_tovaru=kupovane[k].kod) then begin
-                                         kupovane[k].kod:=0;
+                                         kupovane[k].kod:='0';
                                          kupovane[k].mnozstvo:=0;
                                          kupovane[k].nazov:='0';
                                          memo2.clear;
@@ -154,10 +144,35 @@ begin
 
  for h:= 1 to spolu do
      memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
-end; }
-
 end;
 
+procedure TForm2.Button5Click(Sender: TObject);     //vyuctuj
+var cislonakupu:integer;
+begin
+ Form4.Show;
+ {assignfile(subor3,'KUPENE.txt');
+ rewrite(subor);
+
+ writeln(kupovane[1].kod   }
+
+end;
+procedure TForm2.Label5Click(Sender: TObject);
+var k,h:integer;
+begin
+for k:= 1 to n do
+      begin
+        if (kod_tovaru=kupovane[k].kod) then begin
+                                         kupovane[k].kod:='0';
+                                         kupovane[k].mnozstvo:=0;
+                                         kupovane[k].nazov:='0';
+                                         memo2.clear;
+                                         end
+        //else begin ;//memo2.append( kupovane[k].nazov + ' ' + inttostr(kupovane[k].mnozstvo));
+      end;
+
+ for h:= 1 to spolu do
+     memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
+end;
 procedure TForm2.Edit1Click(Sender: TObject);
 begin
   Edit1.Clear;
@@ -172,7 +187,7 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
-    znak,cislo,cislo2:char;
+    znak,cislo,cislo2,bc:char;
     line:string;
 begin
 memo2.clear;
@@ -199,9 +214,6 @@ spolu:=0;
               end;
             read(subor,cislo);
 
-
-         //read(subor,najpredavanejsie[i].kod);
-
          read(subor,znak);
          repeat
             najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
@@ -215,7 +227,7 @@ spolu:=0;
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
 j:=0;
-read(subor1,pocetriadkov);
+readln(subor1,pocetriadkov);
 
 while not eof(subor1) do
       begin
@@ -225,50 +237,39 @@ while not eof(subor1) do
                read(subor1,cislo);
                zoznam[j].kod:=zoznam[j].kod+cislo;
               end;
-            read(subor1,cislo);
+          read(subor1,bc); //cita ;
 
-         //until cislo=';';
-
-         //read(subor,najpredavanejsie[i].kod);
-
-         read(subor1,znak);
          repeat
-            zoznam[j].nazov:=zoznam[j].nazov+znak;
             read(subor1,znak);
+            zoznam[j].nazov:=zoznam[j].nazov+znak;
          until eoln(subor1);
+         readln(subor1);
 
-
-
-         //readln(subor1);
-
-       memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
+         //memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
       end;
+
  label6.visible:=false;
+
+
+
 
   assignfile(subor2,'CENNIK.txt');
   reset(subor2);
-  read(subor2,pocetriadkov2);
+  readln(subor2,pocetriadkov2);
   i:=0;
 
   while not eof(subor2) do
         begin
           inc(i);
           ReadLn(subor2,line);
-          SScanf(line,'%d %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
-
-
+          SScanf(line,'%s %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
         end;
-  {For i:=1 to pocetriadkov2 do
+ For i:=1 to pocetriadkov2 do
       begin
-      Memo1.Append(inttostr(cennik[i].kod));
+      Memo1.Append(cennik[i].kod);
       Memo1.Append(floattostr(cennik[i].cenan));
       Memo1.Append(floattostr(cennik[i].cenap));
-      end; }
-
-end;
-
-procedure TForm2.Label5Click(Sender: TObject);
-begin
+      end;
 
 end;
 

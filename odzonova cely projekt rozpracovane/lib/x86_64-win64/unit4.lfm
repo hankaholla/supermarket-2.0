@@ -1,10 +1,10 @@
 object Form4: TForm4
-  Left = 948
-  Height = 780
-  Top = 181
+  Left = 700
+  Height = 945
+  Top = 22
   Width = 937
   Caption = 'Účet - koniec nákupu'
-  ClientHeight = 780
+  ClientHeight = 945
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
@@ -13,9 +13,9 @@ object Form4: TForm4
   LCLVersion = '1.8.0.6'
   object Memo1: TMemo
     Left = 240
-    Height = 490
+    Height = 392
     Top = 24
-    Width = 367
+    Width = 264
     Lines.Strings = (
       'Memo1'
     )
@@ -37,9 +37,9 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 549
+    Left = 552
     Height = 41
-    Top = 568
+    Top = 375
     Width = 291
     Caption = 'Ďakujeme za nákup!'
     Font.CharSet = EASTEUROPE_CHARSET
@@ -52,18 +52,18 @@ object Form4: TForm4
     ParentFont = False
   end
   object Button7: TButton
-    Left = 576
+    Left = 568
     Height = 43
-    Top = 624
+    Top = 456
     Width = 248
     Caption = 'Ukončiť a odhlásiť'
     OnClick = Button7Click
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 576
+    Left = 568
     Height = 46
-    Top = 688
+    Top = 520
     Width = 248
     Caption = 'Nový nákup'
     OnClick = Button1Click

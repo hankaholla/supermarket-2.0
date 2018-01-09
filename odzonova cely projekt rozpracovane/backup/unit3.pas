@@ -43,7 +43,7 @@ type zaznam=record
      kod:string;
      nazov:string;
 end;
-const N=15;
+const N=30;
 
 var
   Form3: TForm3;
@@ -56,7 +56,7 @@ var
   drogeria:array[1..N]of zaznam;
   maso:array[1..N]of zaznam;
   subor1,subor199:textfile;
-  l,x,y,o,z,p,m,d:integer;
+  l,x,y,o,z,p,m,s,d:integer;
 
 implementation
 uses
@@ -101,7 +101,7 @@ begin
  Form2.Show;
 end;
 
-procedure TForm3.Button5Click(Sender: TObject);
+procedure TForm3.Button5Click(Sender: TObject);    //zelenina
 begin
 x:=20;
  y:=20;
@@ -110,9 +110,9 @@ x:=20;
        Image1.Canvas.Textout(x,y*l,zelenina[l].nazov);
 end;
 
-procedure TForm3.Button6Click(Sender: TObject);
+procedure TForm3.Button6Click(Sender: TObject);   //drogeria
 begin
-   x:=20;
+  x:=20;
   y:=20;
     Image1.Canvas.Fillrect(Clientrect);
     For l:=1 to N do
@@ -127,7 +127,7 @@ Form1.edit2.clear;
 Form1.label7.visible:=False;
 end;
 
-procedure TForm3.Button8Click(Sender: TObject);
+procedure TForm3.Button8Click(Sender: TObject);    //maso
 begin
 x:=20;
 y:=20;
@@ -138,10 +138,10 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var i,j,www:integer;
-  cislo:char;
+  cislo,bc:char;
 begin
 assignfile(subor1,'TOVAR.txt');
-assignfile(subor199,'JEBO.txt');
+                               //assignfile(subor199,'JEBO.txt');
 reset(subor1);
 
 j:=0;
@@ -157,13 +157,14 @@ while not eof(subor1) do
                  read(subor1,cislo);
                  pole[j].kod:=pole[j].kod+cislo;
              end;
-         read(subor1,cislo);
+         read(subor1,bc); //cita ;
 
-         read(subor1,znak);
+
          repeat
-            pole[j].nazov:=pole[j].nazov+znak;
             read(subor1,znak);
+            pole[j].nazov:=pole[j].nazov+znak;
          until eoln(subor1);
+
          readln(subor1);
       end;
 
@@ -172,6 +173,7 @@ z:=0;
 p:=0;
 m:=0;
 d:=0;
+s:=0;
 
 For j:=1 to N do
         begin
@@ -203,9 +205,9 @@ For j:=1 to N do
                                                           drogeria[d].kod:=pole[j].kod;
                                                           end;
         if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='6') then begin
-                                                          inc(d);
-                                                          maso[d].nazov:=pole[j].nazov;
-                                                          maso[d].kod:=pole[j].kod;
+                                                          inc(s);
+                                                          maso[s].nazov:=pole[j].nazov;
+                                                          maso[s].kod:=pole[j].kod;
                                                           end;
         end;
 
