@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls;
+  ExtCtrls, ComCtrls;
 
 type
 
@@ -20,7 +20,6 @@ type
     Button5: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
-    Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -29,6 +28,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    ListView1: TListView;
     Memo1: TMemo;
     Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
@@ -57,15 +57,14 @@ type zaznam1=record       //zoznam+najpredavanejsie
  end;
 type zaznam3=record  //cennik
       kod:string;
-      bc1:char;
-      cenan:real;
-      bc2:char;
-      cenap:real;
+      cenan:string;
+      cenap:string;
       end;
 const n=30;
+      m=10;
 
 var zoznam: array[1..n] of zaznam1;
-    najpredavanejsie: array[1..n] of zaznam1;
+    najpredavanejsie: array[1..m] of zaznam1;
     kupovane: array[1..n] of zaznam2;
     cennik:array[1..n] of zaznam3;
 
@@ -94,7 +93,7 @@ kod_tovaru:=edit1.text;
 k:=0;
 cena:=0;
 
-for k:= 1 to n do
+{for k:= 1 to n do
     begin
       if (kod_tovaru=zoznam[k].kod) then begin    //ak sa zadany kod nachadza zapisuj
                                            if (kod_tovaru=cennik[k].kod) then begin
@@ -111,7 +110,7 @@ for k:= 1 to n do
                                          end;
 
       //treba vyhodit vynimku
-      end;
+      end;}
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
@@ -187,8 +186,8 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
-    znak,cislo,cislo2,bc:char;
-    line:string;
+    znak,cislo,cislo2,bc,ch:char;
+    line,s,nakup,predaj:string;
 begin
 memo2.clear;
 Memo2.Append('Váš účet');
@@ -207,22 +206,38 @@ spolu:=0;
        begin
          inc(i);
 
-          for i:=1 to 6 do
+          for j:=1 to 6 do
               begin
                 read(subor,cislo);
                 najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
               end;
-            read(subor,cislo);
+            read(subor,bc);
 
-         read(subor,znak);
          repeat
-            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
             read(subor,znak);
+            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
          until eoln(subor);
+         readln(subor);
+         //memo1.append(najpredavanejsie[i].nazov);
+    end;
 
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=najpredavanejsie[i].nazov;
+             SubItems.Add(cennik[i].cenap+'€');
+            end;
 
-         Image1.Canvas.textout(x,y*i,najpredavanejsie[i].nazov);  //nahradit listboxom
-         end;
+    end;
+
+  {Item1 := ListView1.Items.Add;
+  Item1.Caption := inttostr(c);
+  Item1.SubItems.Add('subitem1');
+
+  Item2 := ListView1.Items.Add;
+  Item2.Caption := 'item2';
+  Item2.SubItems.Add('subitem2');}
 
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
@@ -258,17 +273,71 @@ while not eof(subor1) do
   readln(subor2,pocetriadkov2);
   i:=0;
 
-  while not eof(subor2) do
+  while not eof(subor) do
         begin
           inc(i);
-          ReadLn(subor2,line);
-          SScanf(line,'%s %c %f %c %f',[@cennik[i].kod,@cennik[i].bc1,@cennik[i].cenan,@cennik[i].bc2,@cennik[i].cenap]);
+          For j:=1 to 6 do
+              begin
+                read(subor2,s);
+                cennik[i].kod:=cennik[i].kod+s;
+              end;
+
+          read(subor,s); //;
+
+          For j:=1 to 4 do
+              begin
+                read(subor2,s);
+                cennik[i].cenan:=cennik[i].cenan+s;
+              end;
+
+          read(subor,s); //;
+
+          For j:=1 to 4 do
+              begin
+                read(subor2,s);
+                cennik[i].cenap:=cennik[i].cenap+s;
+              end;
+
+          readln(subor2);
+
+          {while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          read(subor,s); //;  }
+
+          {readln(subor2,predaj);
+          cennik[i].cenap:=strtofloat(predaj); }
+
+
+          {read(subor2, s);
+          while s<>';' do begin              //code
+           cennik[i].kod:=cennik[i].kod+s;
+           read(subor2, s);
+          end;   }
+          //read(subor2,bc);
+
+          {read(subor2, s);
+          while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          readln(subor2,predaj);
+          cennik[i].cenap:=strtofloat(predaj); }
+
+          //ReadLn(subor2,line);
+          //SScanf(line,'%6%c%f%c%f',[@cennik[i].kod,@cennik[i].cenan,@cennik[i].cenap]);
         end;
+
  For i:=1 to pocetriadkov2 do
       begin
       Memo1.Append(cennik[i].kod);
-      Memo1.Append(floattostr(cennik[i].cenan));
-      Memo1.Append(floattostr(cennik[i].cenap));
+      Memo1.Append(cennik[i].cenan);
+      Memo1.Append(cennik[i].cenap);
       end;
 
 end;

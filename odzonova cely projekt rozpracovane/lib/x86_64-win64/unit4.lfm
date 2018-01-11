@@ -1,10 +1,10 @@
 object Form4: TForm4
-  Left = 700
-  Height = 945
-  Top = 22
+  Left = 971
+  Height = 758
+  Top = 137
   Width = 937
   Caption = 'Účet - koniec nákupu'
-  ClientHeight = 945
+  ClientHeight = 758
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
