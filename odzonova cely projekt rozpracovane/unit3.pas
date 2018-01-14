@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls;
+  ExtCtrls, ComCtrls;
 
 type
 
@@ -21,9 +21,9 @@ type
     Button6: TButton;
     Button7: TButton;
     Button8: TButton;
-    Image1: TImage;
     Label1: TLabel;
     Label9: TLabel;
+    ListView1: TListView;
     Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -46,6 +46,7 @@ type zaznam=record
      nazov:string;
 end;
 const N=30;
+  m=5 ;
 
 var
   Form3: TForm3;
@@ -58,7 +59,7 @@ var
   drogeria:array[1..N]of zaznam;
   maso:array[1..N]of zaznam;
   subor1,subor199:textfile;
-  l,x,y,o,z,p,m,s,d:integer;
+  i,l,x,y,o,z,p,s,d,k:integer;
 
 implementation
 uses
@@ -72,30 +73,46 @@ uses
 
 procedure TForm3.Button1Click(Sender: TObject);  //mraz
 begin
-x:=20;
-y:=20;
-  Image1.Canvas.Fillrect(Clientrect);
-  For l:=1 to N do
-      Image1.Canvas.Textout(x,y*l,mrazaky[l].nazov);
+ListView1.Items.clear;
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=mrazaky[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+            end;
+end;
+
 end;
 
 procedure TForm3.Button2Click(Sender: TObject);  //pecivko
 begin
-x:=20;
-y:=20;
-  Image1.Canvas.Fillrect(Clientrect);
-  For l:=1 to N do
-      Image1.Canvas.Textout(x,y*l,pecivo[l].nazov);
+ListView1.Items.clear;
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=pecivo[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+            end;
+
+end;
 
 end;
 
 procedure TForm3.Button3Click(Sender: TObject); //ovocie
 begin
-  x:=20;
-  y:=20;
-    Image1.Canvas.Fillrect(Clientrect);
-    For l:=1 to N do
-        Image1.Canvas.Textout(x,y*l,ovocie[l].nazov);
+ListView1.Items.clear;
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=ovocie[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+end;
+
+    end;
+
 end;
 
 procedure TForm3.Button4Click(Sender: TObject);
@@ -105,20 +122,30 @@ end;
 
 procedure TForm3.Button5Click(Sender: TObject);    //zelenina
 begin
-x:=20;
- y:=20;
-   Image1.Canvas.Fillrect(Clientrect);
-   For l:=1 to N do
-       Image1.Canvas.Textout(x,y*l,zelenina[l].nazov);
+ListView1.Items.clear;
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=zelenina[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+            end;
+end;
+
 end;
 
 procedure TForm3.Button6Click(Sender: TObject);   //drogeria
 begin
-  x:=20;
-  y:=20;
-    Image1.Canvas.Fillrect(Clientrect);
-    For l:=1 to N do
-        Image1.Canvas.Textout(x,y*l,drogeria[l].nazov);
+ListView1.Items.clear;
+  For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=drogeria[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+            end;
+end;
+
 end;
 
 procedure TForm3.Button7Click(Sender: TObject);
@@ -131,11 +158,16 @@ end;
 
 procedure TForm3.Button8Click(Sender: TObject);    //maso
 begin
-x:=20;
-y:=20;
-Image1.Canvas.Fillrect(Clientrect);
-For l:=1 to N do
-    Image1.Canvas.Textout(x,y*l,maso[l].nazov);
+ListView1.Items.clear;
+For i:=1 to m do
+    begin
+       with ListView1.Items.Add do
+            begin
+             Caption:=maso[i].nazov;
+             //SubItems.Add(floattostr(cennik[i].cenap)+'€');
+            end;
+end;
+
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
@@ -175,7 +207,7 @@ while not eof(subor1) do
 o:=0;
 z:=0;
 p:=0;
-m:=0;
+k:=0;
 d:=0;
 s:=0;
 
@@ -198,9 +230,9 @@ For j:=1 to N do
                                                           pecivo[p].kod:=pole[j].kod;
                                                           end;
         if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='4') then begin
-                                                          inc(m);
-                                                          mrazaky[m].nazov:=pole[j].nazov;
-                                                          mrazaky[m].kod:=pole[j].kod;
+                                                          inc(k);
+                                                          mrazaky[k].nazov:=pole[j].nazov;
+                                                          mrazaky[k].kod:=pole[j].kod;
                                                           end;
 
         if ((pole[j].kod[1])='1') and ((pole[j].kod[2])='5') then begin

@@ -57,11 +57,12 @@ type zaznam1=record       //zoznam+najpredavanejsie
  end;
 type zaznam3=record  //cennik
       kod:string;
-      cenan:string;
-      cenap:string;
+      cenan:real;
+      cenap:real;
       end;
 const n=30;
       m=10;
+      desatinna=',';
 
 var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..m] of zaznam1;
@@ -186,9 +187,11 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
-    znak,cislo,cislo2,bc,ch:char;
-    line,s,nakup,predaj:string;
+    znak,cislo,cislo2,bc,ch,s:char;
+    line,nakup,predaj,predajkoniec,riadok:string;
+    debil,skuska:real;
 begin
+ debil:=11.22;
 memo2.clear;
 Memo2.Append('Váš účet');
 Memo2.Lines.Add(' ');
@@ -226,7 +229,7 @@ For i:=1 to m do
        with ListView1.Items.Add do
             begin
              Caption:=najpredavanejsie[i].nazov;
-             SubItems.Add(cennik[i].cenap+'€');
+             SubItems.Add(floattostr(cennik[i].cenap)+'€');
             end;
 
     end;
@@ -273,32 +276,62 @@ while not eof(subor1) do
   readln(subor2,pocetriadkov2);
   i:=0;
 
-  while not eof(subor) do
-        begin
-          inc(i);
-          For j:=1 to 6 do
+  //For i:=1 to pocetriadkov2 do
+        //begin
+
+          read(subor2,s);
+          while (s<>';') do
               begin
-                read(subor2,s);
                 cennik[i].kod:=cennik[i].kod+s;
-              end;
-
-          read(subor,s); //;
-
-          For j:=1 to 4 do
-              begin
                 read(subor2,s);
-                cennik[i].cenan:=cennik[i].cenan+s;
               end;
+          Memo1.append(cennik[i].kod);
 
-          read(subor,s); //;
+          //read(subor,s); //;
 
-          For j:=1 to 4 do
+          {read(subor2,s);
+          while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          skuska:=cennik[i].cenan+1;
+
+
+         { read(subor2,s);     //cita prvu cislicu desatinneho cisla
+          while (s<>desatinna) do        //pokym nenajde bodku cita
               begin
-                read(subor2,s);
-                cennik[i].cenap:=cennik[i].cenap+s;
-              end;
+               nakup:=nakup+s;
+               read(subor2,s);
+               end;
+          nakup:=nakup+desatinna;      //prida bodku - napr. (2. )
 
-          readln(subor2);
+          read(subor2,s);        //cita za desatinnou ciarkou
+          while (s<>';') do
+              begin
+                nakup:=nakup+s;
+                read(subor2,s);
+              end;  }
+
+
+          Memo1.append(floattostr(cennik[i].cenan)+'   '+floattostr(skuska));
+
+         { read(subor,s); //;
+
+          read(subor2,s);     //cita prvu cislicu desatinneho cisla  predaja
+          while (s<>desatinna) do
+              begin
+               predaj:=predaj+s;
+               read(subor2,s);
+               end;
+          predaj:=predaj+desatinna;
+
+          readln(subor2,predajkoniec);
+          predaj:=predaj+predajkoniec;
+          cennik[i].cenap:=strtofloat(predaj);
+
+       memo1.append(floattostr(cennik[i].cenap));    }
 
           {while s<>';' do begin              //cena nakup
            nakup:=nakup+s;
@@ -336,10 +369,9 @@ while not eof(subor1) do
  For i:=1 to pocetriadkov2 do
       begin
       Memo1.Append(cennik[i].kod);
-      Memo1.Append(floattostr(cennik[i].cenan));
-      Memo1.Append(floattostr(cennik[i].cenap));
-      end;
-
+      Memo1.Append(cennik[i].cenan);
+      Memo1.Append(cennik[i].cenap);
+      end;  }
 end;
 
 end.

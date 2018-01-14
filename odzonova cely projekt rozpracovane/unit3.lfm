@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 496
+  Left = 782
   Height = 945
-  Top = 0
+  Top = 65
   Width = 937
   Caption = 'Sekcie zoznamu'
   ClientHeight = 945
@@ -37,13 +37,6 @@ object Form3: TForm3
     Caption = 'Ovocíčko'
     OnClick = Button3Click
     TabOrder = 2
-  end
-  object Image1: TImage
-    Left = 240
-    Height = 448
-    Top = 176
-    Width = 325
-    OnClick = Image1Click
   end
   object Button4: TButton
     Left = 40
@@ -138,5 +131,23 @@ object Form3: TForm3
     OnChange = Memo2Change
     ScrollBars = ssVertical
     TabOrder = 8
+  end
+  object ListView1: TListView
+    Left = 240
+    Height = 448
+    Top = 176
+    Width = 325
+    Checkboxes = True
+    Columns = <    
+      item
+        Caption = 'Položka'
+        Width = 200
+      end    
+      item
+        Caption = 'Cena'
+        Width = 100
+      end>
+    TabOrder = 9
+    ViewStyle = vsReport
   end
 end
