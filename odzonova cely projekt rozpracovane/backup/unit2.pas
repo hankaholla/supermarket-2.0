@@ -191,6 +191,8 @@ var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
     line,nakup,predaj,predajkoniec,riadok:string;
     debil,skuska:real;
 begin
+ DefaultFormatSettings.DecimalSeparator:='.';
+
  debil:=11.22;
 memo2.clear;
 Memo2.Append('Váš účet');
@@ -289,7 +291,7 @@ while not eof(subor1) do
 
           //read(subor,s); //;
 
-          {read(subor2,s);
+          {read(subor2,s);         //PRVY POKUS
           while s<>';' do begin              //cena nakup
            nakup:=nakup+s;
            read(subor2, s);
@@ -299,7 +301,7 @@ while not eof(subor1) do
           skuska:=cennik[i].cenan+1;
 
 
-         { read(subor2,s);     //cita prvu cislicu desatinneho cisla
+         { read(subor2,s);   //DRUHY POKUS  //cita prvu cislicu desatinneho cisla
           while (s<>desatinna) do        //pokym nenajde bodku cita
               begin
                nakup:=nakup+s;
@@ -319,7 +321,7 @@ while not eof(subor1) do
 
          { read(subor,s); //;
 
-          read(subor2,s);     //cita prvu cislicu desatinneho cisla  predaja
+          read(subor2,s);    //TRETI POKUS //cita prvu cislicu desatinneho cisla  predaja
           while (s<>desatinna) do
               begin
                predaj:=predaj+s;
@@ -340,17 +342,10 @@ while not eof(subor1) do
           cennik[i].cenan:=strtofloat(nakup);
 
           read(subor,s); //;  }
-
+                                             //STVRTY POKUS
           {readln(subor2,predaj);
           cennik[i].cenap:=strtofloat(predaj); }
 
-
-          {read(subor2, s);
-          while s<>';' do begin              //code
-           cennik[i].kod:=cennik[i].kod+s;
-           read(subor2, s);
-          end;   }
-          //read(subor2,bc);
 
           {read(subor2, s);
           while s<>';' do begin              //cena nakup
@@ -362,7 +357,7 @@ while not eof(subor1) do
           readln(subor2,predaj);
           cennik[i].cenap:=strtofloat(predaj); }
 
-          //ReadLn(subor2,line);
+          //ReadLn(subor2,line);         //PIATY POKUS
           //SScanf(line,'%6%c%f%c%f',[@cennik[i].kod,@cennik[i].cenan,@cennik[i].cenap]);
         end;
 

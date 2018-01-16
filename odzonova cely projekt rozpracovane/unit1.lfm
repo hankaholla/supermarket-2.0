@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 323
+  Left = 128
   Height = 810
-  Top = 72
+  Top = 91
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 810
@@ -34,8 +34,7 @@ object Form1: TForm1
     Top = 368
     Width = 112
     EchoMode = emPassword
-    OnClick = Edit2Click
-    OnEnter = Edit2Enter
+    OnEditingDone = Button1Click
     ParentShowHint = False
     PasswordChar = '*'
     TabOrder = 1

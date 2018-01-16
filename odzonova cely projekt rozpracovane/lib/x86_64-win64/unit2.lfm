@@ -209,10 +209,10 @@ object Form2: TForm2
     ViewStyle = vsReport
   end
   object Memo1: TMemo
-    Left = 460
-    Height = 331
-    Top = 28
-    Width = 257
+    Left = 272
+    Height = 119
+    Top = 496
+    Width = 284
     Lines.Strings = (
       'Memo1'
     )

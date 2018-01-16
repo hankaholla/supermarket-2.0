@@ -22,7 +22,6 @@ type
     Label7: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
-    procedure Edit2Enter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
@@ -33,13 +32,13 @@ type
   end;
 type zaznam=record       //pokladnici.txt
      meno:string;
-     heslo:integer;
+     heslo:string;
 end;
-const n=10;
+const n=4;
 var zamestnanci: array [1..n] of zaznam;
     subor: textfile;
     znak: char;
-    heslo:integer;
+    heslo:string;
     meno: string;
     Form1: TForm1;
 
@@ -59,7 +58,10 @@ begin
   rewrite(subor99);
   writeln(subor99,'blabla');
   closefile(subor99); }
-
+    For i:=1 to n do  begin
+      zamestnanci[i].heslo:='placeholder';
+      zamestnanci[i].meno:='placeholder';
+  end;
 
   assignfile(subor,'pokladnici.txt');
   reset(subor);
@@ -86,7 +88,10 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 var j: integer;
 begin
-heslo:=strtoint(edit2.text);
+heslo:=edit2.text;
+if heslo='' then
+   showmessage('Heslo nemoze byt prazdne! Zadajte heslo.');
+
 label7.visible:=False;
 
 for j:= 1 to n do
@@ -108,27 +113,6 @@ end;
 procedure TForm1.Edit2Click(Sender: TObject);
 begin
   edit2.clear;
-end;
-
-procedure TForm1.Edit2Enter(Sender: TObject);  //preco nefunguje
-var j,heslo:integer;
-begin
-{heslo:=strtoint(edit2.text);
-
-
-for j:= 1 to n do
-    begin
-      if (heslo=zamestnanci[j].heslo) then begin
-                                             Form1.Visible:=False;
-                                             Form2.Show;
-                                             Form2.label5.caption:='Pokladnik: ' + zamestnanci[j].meno;
-                                             Form3.label1.caption:='Pokladnik:'+ zamestnanci[j].meno;
-                                           end
-      else begin
-           label7.visible:=True;
-           //label7.caption:='CHYBNE PRIHLASOVACIE UDAJE!SKUSTE ZNOVU';
-           end;
-    end; }
 end;
 
 end.

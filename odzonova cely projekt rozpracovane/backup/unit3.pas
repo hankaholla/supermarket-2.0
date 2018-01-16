@@ -87,6 +87,7 @@ end;
 
 procedure TForm3.Button2Click(Sender: TObject);  //pecivko
 begin
+ListView1.Items.clear;
 For i:=1 to m do
     begin
        with ListView1.Items.Add do
@@ -101,6 +102,7 @@ end;
 
 procedure TForm3.Button3Click(Sender: TObject); //ovocie
 begin
+ListView1.Items.clear;
 For i:=1 to m do
     begin
        with ListView1.Items.Add do
@@ -120,6 +122,7 @@ end;
 
 procedure TForm3.Button5Click(Sender: TObject);    //zelenina
 begin
+ListView1.Items.clear;
 For i:=1 to m do
     begin
        with ListView1.Items.Add do
@@ -133,6 +136,7 @@ end;
 
 procedure TForm3.Button6Click(Sender: TObject);   //drogeria
 begin
+ListView1.Items.clear;
   For i:=1 to m do
     begin
        with ListView1.Items.Add do
@@ -154,6 +158,7 @@ end;
 
 procedure TForm3.Button8Click(Sender: TObject);    //maso
 begin
+ListView1.Items.clear;
 For i:=1 to m do
     begin
        with ListView1.Items.Add do

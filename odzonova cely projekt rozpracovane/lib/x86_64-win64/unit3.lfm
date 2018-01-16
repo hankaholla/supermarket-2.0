@@ -1,10 +1,10 @@
 object Form3: TForm3
-  Left = 782
-  Height = 945
-  Top = 65
+  Left = 825
+  Height = 863
+  Top = 45
   Width = 937
   Caption = 'Sekcie zoznamu'
-  ClientHeight = 945
+  ClientHeight = 863
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
