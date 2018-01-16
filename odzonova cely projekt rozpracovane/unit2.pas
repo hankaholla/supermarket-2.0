@@ -45,9 +45,14 @@ type
   public
     { public declarations }
   end;
-type zaznam1=record       //zoznam+najpredavanejsie
+type zaznam1=record       //zoznam
       kod: string;
       nazov: string;
+ end;
+  type zaznam=record       //najpredavanejsie
+      kod: string;
+      nazov: string;
+      cena:real;
  end;
  type zaznam2=record     //nakupene
        nazov: string;
@@ -62,11 +67,12 @@ type zaznam3=record  //cennik
       end;
 const n=30;
       m=10;
+      w=100;
       desatinna='.';
 
 var zoznam: array[1..n] of zaznam1;
-    najpredavanejsie: array[1..m] of zaznam1;
-    kupovane: array[1..n] of zaznam2;
+    najpredavanejsie: array[1..m] of zaznam;
+    kupovane: array[1..w] of zaznam2;
     cennik:array[1..n] of zaznam3;
 
     subor,subor1,subor2,subor3: textfile;
@@ -186,7 +192,7 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var x,y,i,j,pocetriadkov,pocetriadkov2: integer;
+var x,y,i,j,pocetriadkov,pocetriadkov2,k,a: integer;
     znak,cislo,cislo2,bc,ch,s:char;
     line,nakup,predaj,predajkoniec,riadok:string;
     debil,skuska:real;
@@ -199,50 +205,7 @@ Memo2.Append('Váš účet');
 Memo2.Lines.Add(' ');
 
 
-assignfile(subor,'STATISTIKA.txt');    //nacitava 10 najpredavanejsich
-reset(subor);
-i:=0;
-x:=20;
-y:=20;
-spolu:=0;
 
-
- while not eof (subor) do   //subor statistika - 10
-       begin
-         inc(i);
-
-          for j:=1 to 6 do
-              begin
-                read(subor,cislo);
-                najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
-              end;
-            read(subor,bc);
-
-         repeat
-            read(subor,znak);
-            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
-         until eoln(subor);
-         readln(subor);
-         //memo1.append(najpredavanejsie[i].nazov);
-    end;
-
-For i:=1 to m do
-    begin
-       with ListView1.Items.Add do
-            begin
-             Caption:=najpredavanejsie[i].nazov;
-             SubItems.Add(floattostr(cennik[i].cenap)+'€');
-            end;
-
-    end;
-
-  {Item1 := ListView1.Items.Add;
-  Item1.Caption := inttostr(c);
-  Item1.SubItems.Add('subitem1');
-
-  Item2 := ListView1.Items.Add;
-  Item2.Caption := 'item2';
-  Item2.SubItems.Add('subitem2');}
 
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
@@ -272,108 +235,130 @@ while not eof(subor1) do
 
 
 
+assignfile(subor,'STATISTIKA.txt');    //nacitava 10 najpredavanejsich
+reset(subor);
+i:=0;
+x:=20;
+y:=20;
+spolu:=0;
+ while not eof (subor) do   //subor statistika - 10
+       begin
+         inc(i);
+
+          for j:=1 to 6 do
+              begin
+                read(subor,cislo);
+                najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
+              end;
+            read(subor,bc);
+
+         repeat
+            read(subor,znak);
+            najpredavanejsie[i].nazov:=najpredavanejsie[i].nazov+znak;
+         until eoln(subor);
+         readln(subor);
+        // memo1.append(najpredavanejsie[i].nazov);
+    end;
+
+
 
   assignfile(subor2,'CENNIK.txt');
   reset(subor2);
-  readln(subor2,pocetriadkov2);  //30
+  readln(subor2,pocetriadkov2);
   i:=0;
 
   For i:=1 to pocetriadkov2 do
         begin
+          nakup:='';
+          predaj:='';
+          read(subor2,s);
 
           read(subor2,s);
-          while (s<>';') do
-              begin
-                cennik[i].kod:=cennik[i].kod+s;
-                read(subor2,s);
-              end;
+         repeat
+            cennik[i].kod:=cennik[i].kod+s;
+            read(subor2,s);
+         until s=';';
           //Memo1.append(cennik[i].kod);
 
-          //read(subor,s); //;
-
-          read(subor2,s);         //PRVY POKUS
-          while s<>';' do begin              //cena nakup
-           nakup:=nakup+s;
-           read(subor2, s);
-          end;
-          cennik[i].cenan:=strtofloat(nakup);
-
-          //Memo1.append(floattostr(cennik[i].cenan));
-
-          //skuska:=cennik[i].cenan+1;
-
-
-         { read(subor2,s);   //DRUHY POKUS  //cita prvu cislicu desatinneho cisla
-          while (s<>desatinna) do        //pokym nenajde bodku cita
-              begin
-               nakup:=nakup+s;
-               read(subor2,s);
-               end;
-          nakup:=nakup+desatinna;      //prida bodku - napr. (2. )
-
-          read(subor2,s);        //cita za desatinnou ciarkou
-          while (s<>';') do
-              begin
-                nakup:=nakup+s;
-                read(subor2,s);
-              end;  }
-
-         // read(subor,s); //;
-
-          read(subor2,s);    //TRETI POKUS //cita prvu cislicu desatinneho cisla  predaja
-          while (s<>desatinna) do
-              begin
-               predaj:=predaj+s;
-               read(subor2,s);
-               end;
-          predaj:=predaj+desatinna;
-          read(subor2,predajkoniec);
+          read(subor2,s);
           repeat
-             predaj:=predaj+predajkoniec;
-             read(subor2,predajkoniec);
-          until eoln(subor2);
-          //readln(subor2,predajkoniec);
+            nakup:=nakup+s;
+            read(subor2,s);
+          until s='.';
+          nakup:=nakup+desatinna;
+
+          read(subor2,s);
+          while s<>';' do
+              begin
+                   nakup:=nakup+s;
+                   read(subor2,s);
+              end;
+          cennik[i].cenan:=strtofloat(nakup);
+          //memo1.append(floattostr(cennik[i].cenan));
+
+           read(subor2,s);
+          repeat
+            predaj:=predaj+s;
+            read(subor2,s);
+          until s='.';
+            predaj:=predaj+desatinna;
+
+          For k:=1 to 2 do
+              begin
+                  read(subor2,s);
+                  predaj:=predaj+s;
+              end;
 
           cennik[i].cenap:=strtofloat(predaj);
-          readln(subor2);
+          //memo1.append(floattostr(cennik[i].cenap));
+          readln(subor);
 
-           memo1.append(floattostr(cennik[i].cenap));
-
-          {while s<>';' do begin              //cena nakup
-           nakup:=nakup+s;
-           read(subor2, s);
           end;
-          cennik[i].cenan:=strtofloat(nakup);
 
-          read(subor,s); //;  }      //STVRTY POKUS
+ { For k:=1 to 10 do
+          begin
+            For j:=1 to 30 do
+                begin
+                  if (najpredavanejsie[k].kod=cennik[j].kod) then najpredavanejsie[k].cena:=cennik[j].cenap
+                end;
+            memo1.append(floattostr(najpredavanejsie[k].cena));
 
-          //read(subor,s);
-          //readln(subor2,predaj);
-          //cennik[i].cenap:=strtofloat(predaj);
+            end;}
+k:=0;
 
-          //Memo1.append(floattostr(cennik[i].cenan)+floattostr(cennik[i].cenap));
+repeat
+  inc(k); //k=1
+  j:=1;
+  a:=0;
+  repeat
+    if (najpredavanejsie[k].kod=cennik[j].kod) then begin
+                                                      najpredavanejsie[k].cena:=cennik[j].cenap;
+                                                      break;
+                                                  end
+    else inc(j);
+  until j=31;
+  memo1.append(floattostr(najpredavanejsie[k].cena));
+until k=11;
 
 
-          {read(subor2, s);
-          while s<>';' do begin              //cena nakup
-           nakup:=nakup+s;
-           read(subor2, s);
-          end;
-          cennik[i].cenan:=strtofloat(nakup);
 
-          readln(subor2,predaj);
-          cennik[i].cenap:=strtofloat(predaj); }
 
-          //ReadLn(subor2,line);         //PIATY POKUS
-          //SScanf(line,'%6%c%f%c%f',[@cennik[i].kod,@cennik[i].cenan,@cennik[i].cenap]);
-        end;
+                               {  with ListView1.Items.Add do
+                                      begin
+                                       Caption:=najpredavanejsie[k].nazov;
+                                       SubItems.Add(floattostr(cennik[j].cenap)+'€');
+                                      end;  }
 
- For i:=1 to pocetriadkov2 do
-      begin
-      Memo1.Append(cennik[i].kod);
-      Memo1.Append(floattostr(cennik[i].cenan));
-      Memo1.Append(floattostr(cennik[i].cenap));
-      end;
+
+
+
+  {Item1 := ListView1.Items.Add;
+  Item1.Caption := inttostr(c);
+  Item1.SubItems.Add('subitem1');
+
+  Item2 := ListView1.Items.Add;
+  Item2.Caption := 'item2';
+  Item2.SubItems.Add('subitem2');}
 end;
 
 end.

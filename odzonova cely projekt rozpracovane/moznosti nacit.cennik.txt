@@ -1,0 +1,78 @@
+          //read(subor,s); //;
+
+          {read(subor2,s);         //PRVY POKUS
+          while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          skuska:=cennik[i].cenan+1;
+
+
+         { read(subor2,s);   //DRUHY POKUS  //cita prvu cislicu desatinneho cisla
+          while (s<>desatinna) do        //pokym nenajde bodku cita
+              begin
+               nakup:=nakup+s;
+               read(subor2,s);
+               end;
+          nakup:=nakup+desatinna;      //prida bodku - napr. (2. )
+
+          read(subor2,s);        //cita za desatinnou ciarkou
+          while (s<>';') do
+              begin
+                nakup:=nakup+s;
+                read(subor2,s);
+              end;  }
+
+
+          Memo1.append(floattostr(cennik[i].cenan)+'   '+floattostr(skuska));
+
+         { read(subor,s); //;
+
+          read(subor2,s);    //TRETI POKUS //cita prvu cislicu desatinneho cisla  predaja
+          while (s<>desatinna) do
+              begin
+               predaj:=predaj+s;
+               read(subor2,s);
+               end;
+          predaj:=predaj+desatinna;
+
+          readln(subor2,predajkoniec);
+          predaj:=predaj+predajkoniec;
+          cennik[i].cenap:=strtofloat(predaj);
+
+       memo1.append(floattostr(cennik[i].cenap));    }
+
+          {while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          read(subor,s); //;  }
+                                             //STVRTY POKUS
+          {readln(subor2,predaj);
+          cennik[i].cenap:=strtofloat(predaj); }
+
+
+          {read(subor2, s);
+          while s<>';' do begin              //cena nakup
+           nakup:=nakup+s;
+           read(subor2, s);
+          end;
+          cennik[i].cenan:=strtofloat(nakup);
+
+          readln(subor2,predaj);
+          cennik[i].cenap:=strtofloat(predaj); }
+
+          //ReadLn(subor2,line);         //PIATY POKUS
+          //SScanf(line,'%6%c%f%c%f',[@cennik[i].kod,@cennik[i].cenan,@cennik[i].cenap]);
+        end;
+
+ For i:=1 to pocetriadkov2 do
+      begin
+      Memo1.Append(cennik[i].kod);
+      Memo1.Append(cennik[i].cenan);
+      Memo1.Append(cennik[i].cenap);
+      end;  }  

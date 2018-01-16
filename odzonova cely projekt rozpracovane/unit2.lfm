@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 495
+  Left = 791
   Height = 809
-  Top = 88
+  Top = 127
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -209,7 +209,7 @@ object Form2: TForm2
     ViewStyle = vsReport
   end
   object Memo1: TMemo
-    Left = 272
+    Left = 264
     Height = 119
     Top = 496
     Width = 284
