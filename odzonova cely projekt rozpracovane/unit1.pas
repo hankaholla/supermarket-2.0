@@ -86,7 +86,7 @@ begin
 
 end;
 procedure TForm1.Button1Click(Sender: TObject);
-var j: integer;
+var pokl: integer;
 begin
 heslo:=edit2.text;
 if heslo='' then
@@ -94,13 +94,15 @@ if heslo='' then
 
 label7.visible:=False;
 
-for j:= 1 to n do
+for pokl:= 1 to n do
     begin
-      if (heslo=zamestnanci[j].heslo) then begin
+      if (heslo=zamestnanci[pokl].heslo) then begin
                                              Form1.Visible:=False;
                                              Form2.Show;
-                                             Form2.label5.caption:='Pokladnik: ' + zamestnanci[j].meno;
-                                             Form3.label1.caption:='Pokladnik:'+ zamestnanci[j].meno;
+                                             Form2.label5.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
+                                             Form3.label1.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
+                                             Form4.Memo1.clear;
+                                             Form4.Memo1.append('Pokladnik: '+zamestnanci[pokl].meno);
                                            end
       else begin
            label7.visible:=True;

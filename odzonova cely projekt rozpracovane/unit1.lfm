@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 595
+  Left = 690
   Height = 810
-  Top = 135
+  Top = 177
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 810

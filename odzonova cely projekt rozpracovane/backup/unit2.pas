@@ -5,7 +5,7 @@ unit Unit2;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, DateUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, ComCtrls;
 
 type
@@ -94,30 +94,32 @@ procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
 var l,k,h: integer;
     cena:real;
 begin
-
 mnozstvo:=strtoint(edit2.text);
 kod_tovaru:=edit1.text;
-k:=0;
+k:=1;
 cena:=0;
 
-{for k:= 1 to n do
-    begin
-      if (kod_tovaru=zoznam[k].kod) then begin    //ak sa zadany kod nachadza zapisuj
-                                           if (kod_tovaru=cennik[k].kod) then begin
-                                                                                 kupovane[k].kod:=kod_tovaru;
-                                                                                 kupovane[k].mnozstvo:=mnozstvo;
-                                                                                 kupovane[k].nazov:=zoznam[k].nazov;
-                                                                                 cena:=(mnozstvo*cennik[k].cenap);
-                                                                                 kupovane[k].cena:=cena;
-                                                                                 Memo2.Append(kupovane[k].nazov+' x '+inttostr(kupovane[k].mnozstvo)+'   '+floattostr(cena))
-                                                                               end
-                                         end
-                                    else begin
-                                           label6.caption:='Chybný kód, skúste ešte raz!';
-                                         end;
+repeat
+   if (kod_tovaru=zoznam[k].kod) then
+         begin                    //ak sa zadany kod nachadza zapisuj
+              if (kod_tovaru=cennik[k].kod) then
+                    begin
+                       kupovane[k].kod:=kod_tovaru;
+                       kupovane[k].mnozstvo:=mnozstvo;
+                       kupovane[k].nazov:=zoznam[k].nazov;
+                       cena:=(mnozstvo*cennik[k].cenap);
+                       kupovane[k].cena:=cena;
+                       Memo2.Append(kupovane[k].nazov+' x '+inttostr(kupovane[k].mnozstvo)+'   '+floattostr(cena))
+                     end
+         end
+  else begin
+            inc(k);
+       end;
+until (k>n) or (kod_tovaru=zoznam[k].kod);
+
+if (kod_tovaru<>zoznam[k].kod) then  label6.caption:='Chybný kód, skúste ešte raz!';
 
       //treba vyhodit vynimku
-      end;}
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
@@ -151,11 +153,17 @@ begin
  for h:= 1 to spolu do
      memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
 end;
-
 procedure TForm2.Button5Click(Sender: TObject);     //vyuctuj
-var cislonakupu:integer;
+var cislonakupu,pokl:integer;
 begin
  Form4.Show;
+ Form4.Memo1.clear;
+ Form4.Memo1.append('');
+ Form4.Memo1.append('Dátum nákupu: '+DateToStr(today));     //+'  '+TimeToStr(today)); //ShowMessage('Today     = '+DateToStr(date));
+ Form4.Memo1.append('');
+
+
+ //form4.memo1.append(
  {assignfile(subor3,'KUPENE.txt');
  rewrite(subor);
 
@@ -192,11 +200,13 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var x,y,i,j,pocetriadkov,pocetriadkov2,k,a: integer;
+var x,y,i,j,pocetriadkov,pocetriadkov2,k: integer;
     znak,cislo,cislo2,bc,ch,s:char;
-    line,nakup,predaj,predajkoniec,riadok:string;
+    line,nakup,predaj,predajkoniec,riadok,a:string;
     debil,skuska:real;
+    today:TDateTime;
 begin
+today:= Now;
  DefaultFormatSettings.DecimalSeparator:='.';
 
  debil:=11.22;
@@ -314,6 +324,20 @@ spolu:=0;
           readln(subor);
 
           end;
+  j:=1;
+  {For i:=1 to m do
+      begin
+        j:=1;
+
+      repeat
+      if najpredavanejsie[i].kod=cennik[j].kod then
+                                               begin
+                                                  najpredavanejsie[i].cena:=cennik[j].cenap;
+                                                  inc(j);
+                                               end
+       else inc(j);
+       until najpredavanejsie[i].kod=cennik[j].kod;
+       end; }
 
  { For k:=1 to 10 do
           begin
@@ -326,29 +350,47 @@ spolu:=0;
             end;}
 k:=0;
 
-repeat
+{repeat
   inc(k); //k=1
   j:=1;
-  a:=0;
-  repeat
-    if (najpredavanejsie[k].kod=cennik[j].kod) then begin
-                                                      najpredavanejsie[k].cena:=cennik[j].cenap;
-                                                      inc(a);
-                                                  end
-    else inc(j);
-  until a=1;
+  a:='';
+  while a<>'ano' do
+      begin
+        if (najpredavanejsie[k].kod=cennik[j].kod) then begin
+                                                          a:='ano';
+                                                          najpredavanejsie[k].cena:=cennik[j].cenap;
+                                                      end
+        else inc(j);
+     end;
   memo1.append(floattostr(najpredavanejsie[k].cena));
-until k=11;
+until k=10; }
 
 
+                     {
+                         repeat
+                            inc(k);
+                            j:=1;
+                            while j<>0 do
+                                begin
+                                    if (najpredavanejsie[k].kod=cennik[j].kod) then
+                                         begin
+                                           with ListView1.Items.Add do
+                                              begin
+                                                j:=0;
+                                               Caption:=najpredavanejsie[k].nazov;
+                                               SubItems.Add(floattostr(cennik[j].cenap)+'€');
+                                              end;
+                                         end
+                                    else inc(j);
+                                end;
 
+                         until k=10;}
 
-                               {  with ListView1.Items.Add do
-                                      begin
-                                       Caption:=najpredavanejsie[k].nazov;
-                                       SubItems.Add(floattostr(cennik[j].cenap)+'€');
-                                      end;  }
-
+ {with ListView1.Items.Add do
+      begin
+       Caption:=najpredavanejsie[k].nazov;
+       SubItems.Add(floattostr(cennik[j].cenap)+'€');
+      end;   }
 
 
 
@@ -359,6 +401,8 @@ until k=11;
   Item2 := ListView1.Items.Add;
   Item2.Caption := 'item2';
   Item2.SubItems.Add('subitem2');}
+
+
 end;
 
 end.
