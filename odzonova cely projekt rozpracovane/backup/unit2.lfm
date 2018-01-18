@@ -125,7 +125,6 @@ object Form2: TForm2
     Width = 85
     Caption = 'Pokladnik: '
     ParentColor = False
-    OnClick = Label5Click
   end
   object Label6: TLabel
     Left = 120
@@ -150,9 +149,9 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 248
+    Left = 264
     Height = 33
-    Top = 120
+    Top = 119
     Width = 198
     Caption = 'Najpredávanejšie:'
     Font.CharSet = EASTEUROPE_CHARSET
@@ -217,6 +216,19 @@ object Form2: TForm2
       'Memo1'
     )
     TabOrder = 9
-    Visible = False
+  end
+  object Label4: TLabel
+    Left = 610
+    Height = 33
+    Top = 119
+    Width = 104
+    Caption = 'Váš účet:'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
   end
 end

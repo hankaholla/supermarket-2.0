@@ -23,6 +23,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -39,7 +40,6 @@ type
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Label5Click(Sender: TObject);
   private
     { private declarations }
   public
@@ -55,10 +55,10 @@ type zaznam1=record       //zoznam
       cena:real;
  end;
  type zaznam2=record     //nakupene
-       nazov: string;
        kod: string;
        mnozstvo: integer;
        cena:real;
+       id: string;
  end;
 type zaznam3=record  //cennik
       kod:string;
@@ -74,6 +74,7 @@ var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..m] of zaznam;
     kupovane: array[1..w] of zaznam2;
     cennik:array[1..n] of zaznam3;
+    nakup:array[1..1000]of kupovane;
 
     subor,subor1,subor2,subor3: textfile;
     mnozstvo,spolu,nakupujem: integer;
@@ -91,31 +92,34 @@ uses
 { TForm2 }
 
 procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
-var l,k,h: integer;
+var l,k,h,jupi,c: integer;
     cena:real;
 begin
 mnozstvo:=strtoint(edit2.text);
 kod_tovaru:=edit1.text;
 k:=1;
+c:=1;
 cena:=0;
-
+inc(kup);
+memo1.append(inttostr(kup));
+jupi:=0;
 repeat
    if (kod_tovaru=zoznam[k].kod) then
          begin                    //ak sa zadany kod nachadza zapisuj
-              if (kod_tovaru=cennik[k].kod) then
+              if (kod_tovaru=cennik[c].kod) then
                     begin
-                       kupovane[k].kod:=kod_tovaru;
-                       kupovane[k].mnozstvo:=mnozstvo;
-                       kupovane[k].nazov:=zoznam[k].nazov;
-                       cena:=(mnozstvo*cennik[k].cenap);
-                       kupovane[k].cena:=cena;
-                       Memo2.Append(kupovane[k].nazov+' x '+inttostr(kupovane[k].mnozstvo)+'   '+floattostr(cena))
+                       jupi:=1;
+                       kupovane[kup].kod:=kod_tovaru;
+                       kupovane[kup].mnozstvo:=mnozstvo;
+                       cena:=(mnozstvo*cennik[c].cenap);
+                       kupovane[kup].cena:=cena;
+                       Memo2.Append(kupovane[kup].kod+' x '+inttostr(kupovane[kup].mnozstvo)+'   '+floattostr(cena))
                      end
+              else inc(c);
          end
-  else begin
-            inc(k);
-       end;
-until (k>n) or (kod_tovaru=zoznam[k].kod);
+  else   inc(k);
+
+until (jupi=1);
 
 if (kod_tovaru<>zoznam[k].kod) then  label6.caption:='Chybný kód, skúste ešte raz!';
 
@@ -144,48 +148,47 @@ begin
         if (kod_tovaru=kupovane[k].kod) then begin
                                          kupovane[k].kod:='0';
                                          kupovane[k].mnozstvo:=0;
-                                         kupovane[k].nazov:='0';
+                                         kupovane[k].id:='0';
                                          memo2.clear;
                                          end
         //else begin ;//memo2.append( kupovane[k].nazov + ' ' + inttostr(kupovane[k].mnozstvo));
       end;
 
  for h:= 1 to spolu do
-     memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
+    // memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
 end;
 procedure TForm2.Button5Click(Sender: TObject);     //vyuctuj
-var cislonakupu,pokl:integer;
+var cislonakupu,pokl,i,number:integer;
+    id_transakcie:string;
 begin
  Form4.Show;
- Form4.Memo1.clear;
+ Form4.memo1.clear;
+ Form4.Memo1.append('Pokladnik: '+pokladnik);
  Form4.Memo1.append('');
  Form4.Memo1.append('Dátum nákupu: '+DateToStr(today));     //+'  '+TimeToStr(today)); //ShowMessage('Today     = '+DateToStr(date));
- Form4.Memo1.append('');
 
+ Form4.memo1.append('');
 
- //form4.memo1.append(
- {assignfile(subor3,'KUPENE.txt');
- rewrite(subor);
+ number:=0;
+ randomize;
+ id_transakcie:='P';
+ For i:=2 to 11 do
+     begin
+       number:=random(10);
+       id_transakcie:=id_transakcie+inttostr(number);
+     end;
 
- writeln(kupovane[1].kod   }
+  Form4.Memo1.Append('ID transakcie: '+id_transakcie);
 
-end;
-procedure TForm2.Label5Click(Sender: TObject);
-var k,h:integer;
-begin
-for k:= 1 to n do
-      begin
-        if (kod_tovaru=kupovane[k].kod) then begin
-                                         kupovane[k].kod:='0';
-                                         kupovane[k].mnozstvo:=0;
-                                         kupovane[k].nazov:='0';
-                                         memo2.clear;
-                                         end
-        //else begin ;//memo2.append( kupovane[k].nazov + ' ' + inttostr(kupovane[k].mnozstvo));
-      end;
+  Form4.Memo1.append('');
+ Form4.memo1.append('Ďakujeme za nákup!');
 
- for h:= 1 to spolu do
-     memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
+ kupovane[1].id:=id_transakcie;
+ assignfile(subor3,'STATISTIKA.txt');
+ rewrite(subor3);
+ writeln(subor3,kupovane[1].kod,';',kupovane[1].mnozstvo,';',kupovane[1].cena,';',kupovane[1].id);
+ closefile(subor3);
+
 end;
 procedure TForm2.Edit1Click(Sender: TObject);
 begin
@@ -211,7 +214,7 @@ today:= Now;
 
  debil:=11.22;
 memo2.clear;
-Memo2.Append('Váš účet');
+//Memo2.Append('Váš účet');
 Memo2.Lines.Add(' ');
 
 
@@ -245,7 +248,7 @@ while not eof(subor1) do
 
 
 
-assignfile(subor,'STATISTIKA.txt');    //nacitava 10 najpredavanejsich
+assignfile(subor,'najpredavanejsie.txt');    //nacitava 10 najpredavanejsich
 reset(subor);
 i:=0;
 x:=20;

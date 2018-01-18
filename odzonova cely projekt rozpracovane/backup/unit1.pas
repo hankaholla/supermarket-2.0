@@ -41,6 +41,7 @@ var zamestnanci: array [1..n] of zaznam;
     heslo:string;
     meno: string;
     Form1: TForm1;
+    pokladnik:string;
 
 implementation
 uses
@@ -97,11 +98,13 @@ label7.visible:=False;
 for pokl:= 1 to n do
     begin
       if (heslo=zamestnanci[pokl].heslo) then begin
+                                             pokladnik:=zamestnanci[pokl].meno;
                                              Form1.Visible:=False;
                                              Form2.Show;
                                              Form2.label5.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
                                              Form3.label1.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
-                                             Form4.Memo1.append('Pokladnik: '+zamestnanci[pokl].meno);
+                                             //Form4.Memo1.clear;
+                                             //Form4.Memo1.append('Pokladnik: '+zamestnanci[pokl].meno);
                                            end
       else begin
            label7.visible:=True;
