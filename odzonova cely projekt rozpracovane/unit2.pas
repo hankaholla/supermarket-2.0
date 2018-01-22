@@ -368,7 +368,7 @@ k:=0;
 until k=10; }
 
 
-                     {
+
                          repeat
                             inc(k);
                             j:=1;
@@ -386,7 +386,7 @@ until k=10; }
                                     else inc(j);
                                 end;
 
-                         until k=10;}
+                         until k=10;
 
  {with ListView1.Items.Add do
       begin

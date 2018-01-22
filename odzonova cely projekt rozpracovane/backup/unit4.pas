@@ -68,13 +68,14 @@ end;
 procedure TForm4.Button1Click(Sender: TObject);
 var i:integer;
 begin
-  Form2.Show; //+nakodit vycistenie kosika, vycistit record nakupenych
+  Form2.Show;
   For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
     begin
       kupovane[i].kod:=0;
       kupovane[i].nazov:=inttostr(0);
       kupovane[i].cena:=0;
     end;
+  Form4.memo1.clear;
 end;
 
 end.

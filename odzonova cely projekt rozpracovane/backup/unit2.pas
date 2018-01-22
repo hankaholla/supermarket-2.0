@@ -74,7 +74,6 @@ var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..m] of zaznam;
     kupovane: array[1..w] of zaznam2;
     cennik:array[1..n] of zaznam3;
-    nakup:array[1..1000]of kupovane;
 
     subor,subor1,subor2,subor3: textfile;
     mnozstvo,spolu,nakupujem: integer;
