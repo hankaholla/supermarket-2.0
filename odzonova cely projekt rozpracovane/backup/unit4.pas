@@ -27,10 +27,10 @@ type
     { public declarations }
   end;
 type zaznam=record
-     kod:integer;
-     nazov:string;
+     kod:string;
      mnozstvo: integer;
      cena:real;
+     id:string;
      end;
   const n=100;
 var
@@ -58,10 +58,10 @@ Form1.edit2.clear;
 Form1.label7.visible:=False;
 For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
     begin
-      kupovane[i].kod:=0;
-      kupovane[i].nazov:=inttostr(0);
+      kupovane[i].kod:='';
       kupovane[i].mnozstvo:=0;
       kupovane[i].cena:=0;
+      kupovane[i].id:='';
     end;
 end;
 
@@ -71,9 +71,10 @@ begin
   Form2.Show;
   For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
     begin
-      kupovane[i].kod:=0;
-      kupovane[i].nazov:=inttostr(0);
+      kupovane[i].kod:='';
+      kupovane[i].mnozstvo:=0;
       kupovane[i].cena:=0;
+      kupovane[i].id:=0;
     end;
   Form4.memo1.clear;
 end;

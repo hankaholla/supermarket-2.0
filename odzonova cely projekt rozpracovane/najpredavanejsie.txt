@@ -1,0 +1,10 @@
+113456;maliny
+117689;jablka
+112234;jahody
+118906;mango
+112309;hruska
+127856;paradajky
+124567;paprika
+123156;uhorka
+128976;salat
+125609;cibula

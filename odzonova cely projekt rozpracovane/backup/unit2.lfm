@@ -188,6 +188,7 @@ object Form2: TForm2
     Caption = 'STORNO'
     OnClick = Button4Click
     TabOrder = 7
+    Visible = False
   end
   object ListView1: TListView
     Left = 264
@@ -208,10 +209,10 @@ object Form2: TForm2
     ViewStyle = vsReport
   end
   object Memo1: TMemo
-    Left = 264
+    Left = 248
     Height = 119
-    Top = 496
-    Width = 284
+    Top = 288
+    Width = 272
     Lines.Strings = (
       'Memo1'
     )
@@ -230,5 +231,32 @@ object Form2: TForm2
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
+  end
+  object Edit3: TEdit
+    Left = 448
+    Height = 33
+    Top = 509
+    Width = 120
+    Alignment = taCenter
+    TabOrder = 10
+    Text = 'množstvo'
+  end
+  object Button6: TButton
+    Left = 448
+    Height = 48
+    Top = 560
+    Width = 121
+    Caption = 'POTVRDIŤ'
+    TabOrder = 11
+  end
+  object Memo3: TMemo
+    Left = 552
+    Height = 135
+    Top = 288
+    Width = 225
+    Lines.Strings = (
+      'Memo3'
+    )
+    TabOrder = 12
   end
 end

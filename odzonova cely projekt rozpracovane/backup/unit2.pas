@@ -18,8 +18,10 @@ type
     Button3: TButton;
     Button4: TButton;
     Button5: TButton;
+    Button6: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
+    Edit3: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -32,6 +34,7 @@ type
     ListView1: TListView;
     Memo1: TMemo;
     Memo2: TMemo;
+    Memo3: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -202,7 +205,7 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var x,y,i,j,pocetriadkov,pocetriadkov2,k: integer;
+var x,y,i,j,pocetriadkov,pocetriadkov2,k,ano: integer;
     znak,cislo,cislo2,bc,ch,s:char;
     line,nakup,predaj,predajkoniec,riadok,a:string;
     debil,skuska:real;
@@ -263,6 +266,7 @@ spolu:=0;
                 najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
               end;
             read(subor,bc);
+            memo1.append(najpredavanejsie[i].kod);
 
          repeat
             read(subor,znak);
@@ -283,14 +287,13 @@ spolu:=0;
         begin
           nakup:='';
           predaj:='';
-          read(subor2,s);
 
           read(subor2,s);
          repeat
             cennik[i].kod:=cennik[i].kod+s;
             read(subor2,s);
          until s=';';
-          //Memo1.append(cennik[i].kod);
+          Memo3.append(cennik[i].kod);
 
           read(subor2,s);
           repeat
@@ -368,25 +371,23 @@ k:=0;
 until k=10; }
 
 
-                     {
-                         repeat
-                            inc(k);
-                            j:=1;
-                            while j<>0 do
-                                begin
-                                    if (najpredavanejsie[k].kod=cennik[j].kod) then
-                                         begin
-                                           with ListView1.Items.Add do
-                                              begin
-                                                j:=0;
-                                               Caption:=najpredavanejsie[k].nazov;
-                                               SubItems.Add(floattostr(cennik[j].cenap)+'€');
-                                              end;
-                                         end
-                                    else inc(j);
-                                end;
+j:=0;
+k:=0;
+repeat
+  inc(k);
+  j:=1;
+  if (najpredavanejsie[k].kod=cennik[j].kod) then
+               begin
+                 with ListView1.Items.Add do
+                    begin
+                      Memo1.append(najpredavanejsie[k].nazov+' '+floattostr(cennik[j].cenap));
+                     Caption:=najpredavanejsie[k].nazov;
+                     SubItems.Add(floattostr(cennik[j].cenap)+'€');
+                    end;
+               end
+          else begin inc(j); check(if); end;
 
-                         until k=10;}
+until k=2;
 
  {with ListView1.Items.Add do
       begin
@@ -403,7 +404,6 @@ until k=10; }
   Item2 := ListView1.Items.Add;
   Item2.Caption := 'item2';
   Item2.SubItems.Add('subitem2');}
-
 
 end;
 
