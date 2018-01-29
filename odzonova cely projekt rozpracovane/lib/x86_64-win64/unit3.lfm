@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 479
+  Left = 866
   Height = 832
-  Top = 140
+  Top = 40
   Width = 937
   Caption = 'Sekcie zoznamu'
   ClientHeight = 832

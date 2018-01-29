@@ -1,16 +1,15 @@
 object Form4: TForm4
-  Left = 904
+  Left = 478
   Height = 806
-  Top = 105
+  Top = 209
   Width = 937
   Caption = 'Účet - koniec nákupu'
   ClientHeight = 806
   ClientWidth = 937
   Color = 16702880
-  DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.4.0.4'
   object Memo1: TMemo
     Left = 240
     Height = 392
@@ -19,6 +18,7 @@ object Form4: TForm4
     Lines.Strings = (
       'Memo1'
     )
+    OnChange = Memo1Change
     TabOrder = 0
   end
   object Label1: TLabel

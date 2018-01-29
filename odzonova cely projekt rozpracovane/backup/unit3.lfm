@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 479
+  Left = 866
   Height = 832
-  Top = 140
+  Top = 40
   Width = 937
   Caption = 'Sekcie zoznamu'
   ClientHeight = 832
@@ -12,18 +12,18 @@ object Form3: TForm3
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Button1: TButton
-    Left = 40
+    Left = 39
     Height = 42
-    Top = 416
+    Top = 360
     Width = 154
     Caption = 'Mrazene'
     OnClick = Button1Click
     TabOrder = 0
   end
   object Button2: TButton
-    Left = 40
-    Height = 42
-    Top = 336
+    Left = 39
+    Height = 48
+    Top = 296
     Width = 154
     Caption = 'Pečivo'
     OnClick = Button2Click
@@ -64,18 +64,18 @@ object Form3: TForm3
     ParentColor = False
   end
   object Button5: TButton
-    Left = 40
+    Left = 39
     Height = 46
-    Top = 256
+    Top = 232
     Width = 154
     Caption = 'Zelenina'
     OnClick = Button5Click
     TabOrder = 4
   end
   object Button6: TButton
-    Left = 40
+    Left = 41
     Height = 46
-    Top = 576
+    Top = 480
     Width = 153
     Caption = 'Drogéria'
     OnClick = Button6Click
@@ -93,7 +93,7 @@ object Form3: TForm3
   object Button8: TButton
     Left = 40
     Height = 48
-    Top = 496
+    Top = 416
     Width = 153
     Caption = 'Mäso'
     OnClick = Button8Click
@@ -119,7 +119,7 @@ object Form3: TForm3
   end
   object Memo2: TMemo
     Left = 592
-    Height = 446
+    Height = 350
     Top = 176
     Width = 286
     HelpType = htKeyword
@@ -133,8 +133,8 @@ object Form3: TForm3
     TabOrder = 8
   end
   object ListView1: TListView
-    Left = 240
-    Height = 448
+    Left = 232
+    Height = 352
     Top = 176
     Width = 325
     Checkboxes = True
@@ -147,6 +147,12 @@ object Form3: TForm3
         Caption = 'Cena'
         Width = 100
       end>
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -24
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     ScrollBars = ssVertical
     TabOrder = 9
     ViewStyle = vsReport

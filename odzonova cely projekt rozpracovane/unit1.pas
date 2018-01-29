@@ -56,10 +56,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
- { assignfile(subor99,'koktina.txt');
-  rewrite(subor99);
-  writeln(subor99,'blabla');
-  closefile(subor99); }
+
   kup:=0;
 
     For i:=1 to n do  begin

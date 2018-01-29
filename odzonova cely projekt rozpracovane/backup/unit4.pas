@@ -21,6 +21,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
   public
@@ -50,6 +51,11 @@ begin
 //Memo1.append
 end;
 
+procedure TForm4.Memo1Change(Sender: TObject);
+begin
+
+end;
+
 procedure TForm4.Button7Click(Sender: TObject);
 var i: integer;
 begin
@@ -74,7 +80,7 @@ begin
       kupovane[i].kod:='';
       kupovane[i].mnozstvo:=0;
       kupovane[i].cena:=0;
-      kupovane[i].id:=0;
+      kupovane[i].id:='';
     end;
   Form4.memo1.clear;
 end;

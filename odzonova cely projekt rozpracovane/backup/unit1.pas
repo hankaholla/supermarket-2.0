@@ -42,6 +42,7 @@ var zamestnanci: array [1..n] of zaznam;
     meno: string;
     Form1: TForm1;
     pokladnik:string;
+    kup:integer;
 
 implementation
 uses
@@ -55,10 +56,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
- { assignfile(subor99,'koktina.txt');
-  rewrite(subor99);
-  writeln(subor99,'blabla');
-  closefile(subor99); }
+
+  kup:=0;
+
     For i:=1 to n do  begin
       zamestnanci[i].heslo:='placeholder';
       zamestnanci[i].meno:='placeholder';

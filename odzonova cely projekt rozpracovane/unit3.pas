@@ -22,6 +22,7 @@ type
     Button7: TButton;
     Button8: TButton;
     Label1: TLabel;
+    Label4: TLabel;
     Label9: TLabel;
     ListView1: TListView;
     Memo2: TMemo;

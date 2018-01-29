@@ -23,11 +23,9 @@ type
     Edit2: TEdit;
     Edit3: TEdit;
     Label1: TLabel;
-    Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
@@ -82,6 +80,7 @@ var zoznam: array[1..n] of zaznam1;
     subor,subor1,subor2,subor3: textfile;
     mnozstvo,spolu,nakupujem: integer;
     kod_tovaru:string;
+    pocetriadkov,pocetriadkov2:integer;
 
     Form2: TForm2;
 
@@ -95,36 +94,56 @@ uses
 { TForm2 }
 
 procedure TForm2.Button1Click(Sender: TObject);      //potvrdit
-var l,k,h,jupi,c: integer;
+var l,k,h,jupi,c,error,ops: integer;
     cena:real;
+    strmnozstvo:string;
 begin
-mnozstvo:=strtoint(edit2.text);
+ops:=0;
+strmnozstvo:=edit2.text;
+if strmnozstvo='' then  begin
+                             ops:=1;
+                             showmessage('Pole nemôže byť prázdne. Zadajte prosím požadované množstvo.');
+                             end;
+
+if ops<>1 then  mnozstvo:=strtoint(edit2.text);
+
 kod_tovaru:=edit1.text;
-k:=1;
-c:=1;
+
+error:=0;
+if kod_tovaru='' then begin
+                 showmessage('Pole nemôže byť prázdne. Zadajte prosím kód tovaru.');
+                 error:=1;
+                 end;
+If ops<>1 then
+   if mnozstvo=0 then showmessage('Pole nemôže byť prázdne. Zadajte prosím požadované množstvo.');
+
 cena:=0;
 inc(kup);
-memo1.append(inttostr(kup));
+
 jupi:=0;
-repeat
-   if (kod_tovaru=zoznam[k].kod) then
-         begin                    //ak sa zadany kod nachadza zapisuj
-              if (kod_tovaru=cennik[c].kod) then
-                    begin
-                       jupi:=1;
-                       kupovane[kup].kod:=kod_tovaru;
-                       kupovane[kup].mnozstvo:=mnozstvo;
-                       cena:=(mnozstvo*cennik[c].cenap);
-                       kupovane[kup].cena:=cena;
-                       Memo2.Append(kupovane[kup].kod+' x '+inttostr(kupovane[kup].mnozstvo)+'   '+floattostr(cena))
-                     end
-              else inc(c);
-         end
-  else   inc(k);
 
-until (jupi=1);
+If (error<>1) then
+   if (ops<>1) then
+        For k:=1 to pocetriadkov do
+         begin
+           if (kod_tovaru=zoznam[k].kod) then     //ak sa zadany kod nachadza zapisuj
+                 For c:=1 to pocetriadkov2 do
+                       if (kod_tovaru=cennik[c].kod) then
+                                  begin
+                                     jupi:=1;
+                                     kupovane[kup].kod:=kod_tovaru;
+                                     kupovane[kup].mnozstvo:=mnozstvo;
+                                     cena:=(mnozstvo*cennik[c].cenap);
+                                     kupovane[kup].cena:=cena;
+                                     Memo2.Append(zoznam[k].nazov+'   '+inttostr(kupovane[kup].mnozstvo)+' x '+floattostr(cennik[c].cenap)+'  '+floattostr(cena));
+                                     Form3.Memo2.Append(zoznam[k].nazov+'   '+inttostr(kupovane[kup].mnozstvo)+' x '+floattostr(cennik[c].cenap)+'  '+floattostr(cena));
+                                   end;
 
-if (kod_tovaru<>zoznam[k].kod) then  label6.caption:='Chybný kód, skúste ešte raz!';
+           end;
+
+If error<>1 then
+   if (jupi=0) then showmessage('Chybný kód, skúste ešte raz!');
+//memo2.append(inttostr(jupi));
 
       //treba vyhodit vynimku
 end;
@@ -211,7 +230,7 @@ edit3.clear;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var x,y,i,j,pocetriadkov,pocetriadkov2,k,ano: integer;
+var x,y,i,j,k,ano: integer;
     znak,cislo,cislo2,bc,ch,s:char;
     line,nakup,predaj,predajkoniec,riadok,a:string;
     debil,skuska:real;
@@ -254,7 +273,7 @@ while not eof(subor1) do
          //memo1.append(zoznam[j].nazov +' ' +zoznam[j].kod);   //pomocne, potom vymazat
       end;
 
- label6.visible:=false;
+ //label6.visible:=false;
 
 
 

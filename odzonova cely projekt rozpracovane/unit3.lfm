@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 479
+  Left = 934
   Height = 832
-  Top = 140
+  Top = 74
   Width = 937
   Caption = 'Sekcie zoznamu'
   ClientHeight = 832
@@ -156,5 +156,19 @@ object Form3: TForm3
     ScrollBars = ssVertical
     TabOrder = 9
     ViewStyle = vsReport
+  end
+  object Label4: TLabel
+    Left = 592
+    Height = 33
+    Top = 128
+    Width = 104
+    Caption = 'Váš účet:'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -28
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
   end
 end
