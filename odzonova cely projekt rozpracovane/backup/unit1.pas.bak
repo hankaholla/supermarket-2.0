@@ -13,17 +13,14 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Edit1: TEdit;
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
     Label7: TLabel;
     procedure Button1Click(Sender: TObject);
-    procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
@@ -33,21 +30,23 @@ type
   public
     { public declarations }
   end;
-type zaznam=record
+type zaznam=record       //pokladnici.txt
      meno:string;
-     heslo:integer;
+     heslo:string;
 end;
-const n=10;
+const n=4;
 var zamestnanci: array [1..n] of zaznam;
     subor: textfile;
     znak: char;
-    heslo:integer;
+    heslo:string;
     meno: string;
-  Form1: TForm1;
+    Form1: TForm1;
+    pokladnik:string;
+    kup:integer;
 
 implementation
 uses
-  Unit2,Unit3;
+  Unit2,Unit3,Unit4;
 
 {$R *.lfm}
 
@@ -57,21 +56,27 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
   label7.visible:=False;
+ { assignfile(subor99,'koktina.txt');
+  rewrite(subor99);
+  writeln(subor99,'blabla');
+  closefile(subor99); }
+  kup:=0;
 
-  assignfile(subor,'ZAMESTNANCI.txt');
+    For i:=1 to n do  begin
+      zamestnanci[i].heslo:='placeholder';
+      zamestnanci[i].meno:='placeholder';
+  end;
+
+  assignfile(subor,'pokladnici.txt');
   reset(subor);
   i:=0;
   while not eof (subor) do
         begin
           inc(i);
-
           readln(subor,zamestnanci[i].meno);
           readln(subor,zamestnanci[i].heslo);
-
-          //memo1.append(zamestnanci[i].meno);
-          //memo1.append(inttostr(zamestnanci[i].heslo));
-
         end;
+  label7.visible:=False;
 
 end;
 
@@ -85,32 +90,31 @@ begin
 
 end;
 procedure TForm1.Button1Click(Sender: TObject);
-var j: integer;
+var pokl: integer;
 begin
-heslo:=strtoint(edit2.text);
-meno:= edit1.text;
+heslo:=edit2.text;
+if heslo='' then
+   showmessage('Heslo nemoze byt prazdne! Zadajte heslo.');
+
 label7.visible:=False;
 
-for j:= 1 to n do
+for pokl:= 1 to n do
     begin
-      if (meno=zamestnanci[j].meno) and (heslo=zamestnanci[j].heslo) then
-                                                                     begin
-                                                                     Form1.Visible:=False;
-                                                                     Form2.Show;
-                                                                     Form2.label5.caption:='Pokladnik: ' + meno;
-                                                                     Form3.label1.caption:='Pokladnik:'+ meno;
-                                                                     end
+      if (heslo=zamestnanci[pokl].heslo) then begin
+                                             pokladnik:=zamestnanci[pokl].meno;
+                                             Form1.Visible:=False;
+                                             Form2.Show;
+                                             Form2.label5.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
+                                             Form3.label1.caption:='Pokladnik:  '+ zamestnanci[pokl].meno;
+                                             //Form4.Memo1.clear;
+                                             //Form4.Memo1.append('Pokladnik: '+zamestnanci[pokl].meno);
+                                           end
       else begin
            label7.visible:=True;
            //label7.caption:='CHYBNE PRIHLASOVACIE UDAJE!SKUSTE ZNOVU';
            end;
     end;
 
-end;
-
-procedure TForm1.Edit1Click(Sender: TObject);
-begin
-  edit1.clear;
 end;
 
 procedure TForm1.Edit2Click(Sender: TObject);

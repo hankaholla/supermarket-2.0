@@ -42,6 +42,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Edit1Click(Sender: TObject);
     procedure Edit2Click(Sender: TObject);
+    procedure Edit3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { private declarations }
@@ -204,12 +205,19 @@ begin
   edit2.clear;
 end;
 
+procedure TForm2.Edit3Click(Sender: TObject);
+begin
+edit3.clear;
+end;
+
 procedure TForm2.FormCreate(Sender: TObject);
 var x,y,i,j,pocetriadkov,pocetriadkov2,k,ano: integer;
     znak,cislo,cislo2,bc,ch,s:char;
     line,nakup,predaj,predajkoniec,riadok,a:string;
     debil,skuska:real;
     today:TDateTime;
+
+    success:array[1..10]of integer;
 begin
 today:= Now;
  DefaultFormatSettings.DecimalSeparator:='.';
@@ -266,7 +274,7 @@ spolu:=0;
                 najpredavanejsie[i].kod:=najpredavanejsie[i].kod+cislo;
               end;
             read(subor,bc);
-            memo1.append(najpredavanejsie[i].kod);
+           // memo1.append(najpredavanejsie[i].kod);
 
          repeat
             read(subor,znak);
@@ -326,10 +334,12 @@ spolu:=0;
 
           cennik[i].cenap:=strtofloat(predaj);
           //memo1.append(floattostr(cennik[i].cenap));
-          readln(subor);
 
-          end;
-  j:=1;
+          readln(subor2);
+        end;
+
+
+  //         KONIEC NACITANI SUBOROV          //
   {For i:=1 to m do
       begin
         j:=1;
@@ -353,7 +363,7 @@ spolu:=0;
             memo1.append(floattostr(najpredavanejsie[k].cena));
 
             end;}
-k:=0;
+//k:=0;
 
 {repeat
   inc(k); //k=1
@@ -371,23 +381,62 @@ k:=0;
 until k=10; }
 
 
-j:=0;
+
+{For k:=1 to 10 do
+    begin
+      success[k]:=0;
+    repeat
+     For j:=1 to 30 do
+         begin
+             if (najpredavanejsie[k].kod=cennik[j].kod) then
+                   begin
+                   najpredavanejsie[k].cena:=cennik[j].cenap;
+                   memo1.append(najpredavanejsie[k].nazov+floattostr(najpredavanejsie[k].cena));
+                   success[k]:=1;
+                   end
+         end;
+     until (success[k]=1);
+     end;    }
+
+     For k:=1 to 10 do
+          For j:=1 to 30 do
+              begin
+                  if (najpredavanejsie[k].kod=cennik[j].kod) then
+                        begin
+                        najpredavanejsie[k].cena:=cennik[j].cenap;
+                        memo1.append(najpredavanejsie[k].nazov+floattostr(najpredavanejsie[j].cena));
+                        end;
+
+              end;
+
+
+For k:=1 to 10 do
+ with ListView1.Items.Add do
+     begin
+       Caption:=najpredavanejsie[k].nazov;
+       SubItems.Add(floattostr(najpredavanejsie[k].cena)+'€');
+     end;
+
+
+{j:=0;       //POVODNE TAKMER FUNGUJUCE
 k:=0;
 repeat
   inc(k);
   j:=1;
-  if (najpredavanejsie[k].kod=cennik[j].kod) then
-               begin
-                 with ListView1.Items.Add do
-                    begin
-                      Memo1.append(najpredavanejsie[k].nazov+' '+floattostr(cennik[j].cenap));
-                     Caption:=najpredavanejsie[k].nazov;
-                     SubItems.Add(floattostr(cennik[j].cenap)+'€');
-                    end;
-               end
-          else begin inc(j); check(if); end;
+  ano:=0;
+  repeat
+      if (najpredavanejsie[k].kod=cennik[j].kod) then
+                     with ListView1.Items.Add do
+                        begin
+                         Memo1.append(najpredavanejsie[k].nazov+' '+floattostr(cennik[j].cenap));
+                         Caption:=najpredavanejsie[k].nazov;
+                         SubItems.Add(floattostr(cennik[j].cenap)+'€');
+                         ano:=1;;
+                        end
+      else inc(j);
+  until (ano=1);
 
-until k=2;
+until (k=10); }
 
  {with ListView1.Items.Add do
       begin
@@ -404,8 +453,7 @@ until k=2;
   Item2 := ListView1.Items.Add;
   Item2.Caption := 'item2';
   Item2.SubItems.Add('subitem2');}
-
-end;
+     end;
 
 end.
 

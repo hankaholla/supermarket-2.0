@@ -1,16 +1,15 @@
 object Form1: TForm1
-  Left = 690
+  Left = 633
   Height = 810
-  Top = 177
+  Top = 143
   Width = 937
   Caption = 'Pokladňa - prihlásenie'
   ClientHeight = 810
   ClientWidth = 937
   Color = 16702880
-  DesignTimePPI = 144
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.4.0.4'
   Visible = True
   object Button1: TButton
     Left = 568
@@ -30,7 +29,7 @@ object Form1: TForm1
   end
   object Edit2: TEdit
     Left = 432
-    Height = 33
+    Height = 23
     Top = 368
     Width = 112
     EchoMode = emPassword

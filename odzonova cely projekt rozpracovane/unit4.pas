@@ -21,6 +21,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
   public
@@ -48,6 +49,11 @@ procedure TForm4.FormCreate(Sender: TObject);
 begin
   //nacitanie uctenky
 //Memo1.append
+end;
+
+procedure TForm4.Memo1Change(Sender: TObject);
+begin
+
 end;
 
 procedure TForm4.Button7Click(Sender: TObject);

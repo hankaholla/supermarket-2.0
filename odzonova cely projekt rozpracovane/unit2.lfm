@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 791
+  Left = 716
   Height = 809
-  Top = 127
+  Top = 67
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -32,9 +32,9 @@ object Form2: TForm2
     TabOrder = 1
   end
   object Button3: TButton
-    Left = 16
+    Left = 24
     Height = 49
-    Top = 168
+    Top = 166
     Width = 200
     Caption = 'Kompletny zoznam'
     OnClick = Button3Click
@@ -105,9 +105,9 @@ object Form2: TForm2
     Text = '00'
   end
   object Memo2: TMemo
-    Left = 608
+    Left = 610
     Height = 325
-    Top = 167
+    Top = 160
     Width = 286
     HelpType = htKeyword
     HelpKeyword = 'uctenka'
@@ -192,8 +192,8 @@ object Form2: TForm2
   end
   object ListView1: TListView
     Left = 264
-    Height = 326
-    Top = 166
+    Height = 288
+    Top = 160
     Width = 304
     Checkboxes = True
     Columns = <    
@@ -205,18 +205,26 @@ object Form2: TForm2
         Caption = 'Cena'
         Width = 100
       end>
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -19
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    ScrollBars = ssAutoVertical
     TabOrder = 8
     ViewStyle = vsReport
   end
   object Memo1: TMemo
-    Left = 248
-    Height = 119
-    Top = 288
+    Left = 328
+    Height = 151
+    Top = 624
     Width = 272
     Lines.Strings = (
       'Memo1'
     )
     TabOrder = 9
+    Visible = False
   end
   object Label4: TLabel
     Left = 610
@@ -233,30 +241,32 @@ object Form2: TForm2
     ParentFont = False
   end
   object Edit3: TEdit
-    Left = 448
+    Left = 447
     Height = 33
-    Top = 509
+    Top = 464
     Width = 120
     Alignment = taCenter
+    OnClick = Edit3Click
     TabOrder = 10
     Text = 'množstvo'
   end
   object Button6: TButton
-    Left = 448
+    Left = 447
     Height = 48
-    Top = 560
+    Top = 512
     Width = 121
     Caption = 'POTVRDIŤ'
     TabOrder = 11
   end
   object Memo3: TMemo
-    Left = 552
+    Left = 88
     Height = 135
-    Top = 288
+    Top = 640
     Width = 225
     Lines.Strings = (
       'Memo3'
     )
     TabOrder = 12
+    Visible = False
   end
 end

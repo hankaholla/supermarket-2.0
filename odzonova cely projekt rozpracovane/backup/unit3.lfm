@@ -1,10 +1,10 @@
 object Form3: TForm3
-  Left = 825
-  Height = 863
-  Top = 45
+  Left = 479
+  Height = 832
+  Top = 140
   Width = 937
   Caption = 'Sekcie zoznamu'
-  ClientHeight = 863
+  ClientHeight = 832
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
@@ -147,6 +147,7 @@ object Form3: TForm3
         Caption = 'Cena'
         Width = 100
       end>
+    ScrollBars = ssVertical
     TabOrder = 9
     ViewStyle = vsReport
   end

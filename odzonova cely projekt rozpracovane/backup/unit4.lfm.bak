@@ -1,20 +1,20 @@
 object Form4: TForm4
-  Left = 936
-  Height = 780
-  Top = 200
+  Left = 478
+  Height = 806
+  Top = 209
   Width = 937
-  Caption = 'Form4'
-  ClientHeight = 780
+  Caption = 'Účet - koniec nákupu'
+  ClientHeight = 806
   ClientWidth = 937
-  Color = 3992831
+  Color = 16702880
   OnCreate = FormCreate
   Position = poDesktopCenter
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.4.0.4'
   object Memo1: TMemo
-    Left = 249
-    Height = 514
-    Top = 45
-    Width = 385
+    Left = 240
+    Height = 392
+    Top = 24
+    Width = 264
     Lines.Strings = (
       'Memo1'
     )
@@ -27,7 +27,7 @@ object Form4: TForm4
     Width = 143
     Caption = 'Váš účet: '
     Font.CharSet = EASTEUROPE_CHARSET
-    Font.Color = clRed
+    Font.Color = clPurple
     Font.Height = -36
     Font.Name = 'Times New Roman'
     Font.Pitch = fpVariable
@@ -35,15 +35,48 @@ object Form4: TForm4
     ParentColor = False
     ParentFont = False
   end
-  object Label4: TLabel
-    Left = 771
+  object Label2: TLabel
+    Left = 552
+    Height = 41
+    Top = 375
+    Width = 291
+    Caption = 'Ďakujeme za nákup!'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
+    Font.Height = -36
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button7: TButton
+    Left = 568
+    Height = 43
+    Top = 456
+    Width = 248
+    Caption = 'Ukončiť a odhlásiť'
+    OnClick = Button7Click
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 568
+    Height = 46
+    Top = 520
+    Width = 248
+    Caption = 'Nový nákup'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Label9: TLabel
+    Left = 826
     Height = 15
-    Top = 16
+    Top = 24
     Width = 76
     AutoSize = False
     Caption = 'HNILLA'
     Font.CharSet = ANSI_CHARSET
-    Font.Color = clRed
+    Font.Color = clPurple
     Font.Height = 15
     Font.Name = 'Perpetua Titling MT'
     Font.Pitch = fpVariable
@@ -52,20 +85,5 @@ object Form4: TForm4
     ParentColor = False
     ParentFont = False
     OptimalFill = True
-  end
-  object Label2: TLabel
-    Left = 568
-    Height = 41
-    Top = 609
-    Width = 291
-    Caption = 'Ďakujeme za nákup!'
-    Font.CharSet = EASTEUROPE_CHARSET
-    Font.Color = clRed
-    Font.Height = -36
-    Font.Name = 'Times New Roman'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentColor = False
-    ParentFont = False
   end
 end
