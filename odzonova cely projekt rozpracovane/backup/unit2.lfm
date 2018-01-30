@@ -1,12 +1,12 @@
 object Form2: TForm2
-  Left = 899
-  Height = 791
-  Top = 100
+  Left = 752
+  Height = 804
+  Top = 71
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
   Caption = 'Nákupný mód'
-  ClientHeight = 791
+  ClientHeight = 804
   ClientWidth = 937
   Color = 16702880
   DesignTimePPI = 144
@@ -14,7 +14,7 @@ object Form2: TForm2
   Position = poDesktopCenter
   LCLVersion = '1.8.0.6'
   object Button1: TButton
-    Left = 103
+    Left = 106
     Height = 48
     Top = 512
     Width = 121
@@ -88,27 +88,32 @@ object Form2: TForm2
     Text = '000000'
   end
   object Edit2: TEdit
-    Left = 103
+    Left = 149
     Height = 33
     Top = 464
-    Width = 121
+    Width = 75
     Alignment = taCenter
     OnClick = Edit2Click
     TabOrder = 5
-    Text = 'množstvo'
   end
   object Memo2: TMemo
-    Left = 610
+    Left = 608
     Height = 325
     Top = 160
     Width = 286
     HelpType = htKeyword
     HelpKeyword = 'uctenka'
     Color = clInfoBk
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Height = -16
+    Font.Name = 'Times New Roman'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     Lines.Strings = (
       'Memo2'
     )
-    ScrollBars = ssVertical
+    ParentFont = False
+    ScrollBars = ssAutoBoth
     TabOrder = 6
   end
   object Label5: TLabel
@@ -180,7 +185,6 @@ object Form2: TForm2
     Height = 288
     Top = 160
     Width = 304
-    Checkboxes = True
     Columns = <    
       item
         Caption = 'Položka'
@@ -191,7 +195,7 @@ object Form2: TForm2
         Width = 100
       end>
     Font.CharSet = EASTEUROPE_CHARSET
-    Font.Height = -19
+    Font.Height = -18
     Font.Name = 'Times New Roman'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -199,12 +203,14 @@ object Form2: TForm2
     ScrollBars = ssAutoVertical
     TabOrder = 8
     ViewStyle = vsReport
+    OnItemChecked = ListView1ItemChecked
+    OnMouseDown = ListView1MouseDown
   end
   object Memo1: TMemo
-    Left = 328
-    Height = 151
-    Top = 624
-    Width = 272
+    Left = 336
+    Height = 127
+    Top = 640
+    Width = 96
     Lines.Strings = (
       'Memo1'
     )
@@ -226,21 +232,21 @@ object Form2: TForm2
     ParentFont = False
   end
   object Edit3: TEdit
-    Left = 447
+    Left = 488
     Height = 33
     Top = 464
-    Width = 120
+    Width = 79
     Alignment = taCenter
     OnClick = Edit3Click
     TabOrder = 10
-    Text = 'množstvo'
   end
   object Button6: TButton
-    Left = 447
+    Left = 446
     Height = 48
     Top = 512
     Width = 121
     Caption = 'POTVRDIŤ'
+    OnClick = Button6Click
     TabOrder = 11
   end
   object Memo3: TMemo
@@ -253,5 +259,21 @@ object Form2: TForm2
     )
     TabOrder = 12
     Visible = False
+  end
+  object Label2: TLabel
+    Left = 40
+    Height = 25
+    Top = 464
+    Width = 79
+    Caption = 'množstvo'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 376
+    Height = 25
+    Top = 472
+    Width = 79
+    Caption = 'množstvo'
+    ParentColor = False
   end
 end

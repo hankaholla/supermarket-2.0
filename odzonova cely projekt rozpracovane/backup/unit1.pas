@@ -42,7 +42,7 @@ var zamestnanci: array [1..n] of zaznam;
     meno: string;
     Form1: TForm1;
     pokladnik:string;
-    kup:integer;
+    kup,purchase,done,skuska:integer;
 
 implementation
 uses
@@ -55,25 +55,25 @@ uses
 procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
-  label7.visible:=False;
+skuska:=0;
+done:=0;
+label7.visible:=False;
 
-  kup:=0;
+  For i:=1 to n do  begin
+    zamestnanci[i].heslo:='placeholder';
+    zamestnanci[i].meno:='placeholder';
+end;
 
-    For i:=1 to n do  begin
-      zamestnanci[i].heslo:='placeholder';
-      zamestnanci[i].meno:='placeholder';
-  end;
-
-  assignfile(subor,'pokladnici.txt');
-  reset(subor);
-  i:=0;
-  while not eof (subor) do
-        begin
-          inc(i);
-          readln(subor,zamestnanci[i].meno);
-          readln(subor,zamestnanci[i].heslo);
-        end;
-  label7.visible:=False;
+assignfile(subor,'pokladnici.txt');
+reset(subor);
+i:=0;
+while not eof (subor) do
+      begin
+        inc(i);
+        readln(subor,zamestnanci[i].meno);
+        readln(subor,zamestnanci[i].heslo);
+      end;
+label7.visible:=False;
 
 end;
 
@@ -89,6 +89,8 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 var pokl: integer;
 begin
+skuska:=0;
+inc(skuska);
 heslo:=edit2.text;
 if heslo='' then
    showmessage('Heslo nemoze byt prazdne! Zadajte heslo.');
@@ -111,7 +113,15 @@ for pokl:= 1 to n do
            //label7.caption:='CHYBNE PRIHLASOVACIE UDAJE!SKUSTE ZNOVU';
            end;
     end;
-
+purchase:=0;
+if purchase=0 then begin
+                       done:=1;
+                       inc(purchase);
+                   end
+                   else if done<>1 then begin
+                                     done:=1;
+                                     inc(purchase);
+                                     end;
 end;
 
 procedure TForm1.Edit2Click(Sender: TObject);

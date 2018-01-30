@@ -27,19 +27,28 @@ type
   public
     { public declarations }
   end;
+    const n=1000;
+    w=100;
+    type zaznam4=record      //chcem kupit
+      kod:string;
+      nazov:string;
+      mnozstvo:integer;
+      cost:real;
+      price:real;
+      end;
 type zaznam=record
-     kod:string;
-     mnozstvo: integer;
-     cena:real;
      id:string;
+     want:array[1..w] of zaznam4;
      end;
-  const n=100;
+
 var
   Form4: TForm4;
+  t:integer;
   kupovane:array[1..n]of zaznam;
+  want:array[1..w] of zaznam4;
 implementation
 uses
-  Unit1,Unit2;
+  Unit1,Unit2,Unit3;
 
 {$R *.lfm}
 
@@ -56,33 +65,62 @@ begin
 
 end;
 
-procedure TForm4.Button7Click(Sender: TObject);
-var i: integer;
+procedure TForm4.Button7Click(Sender: TObject);    //vypiname pokladnu
+var i,j: integer;
 begin
 Form1.Show;
 Form1.edit2.clear;
 Form1.label7.visible:=False;
-For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
-    begin
-      kupovane[i].kod:='';
-      kupovane[i].mnozstvo:=0;
-      kupovane[i].cena:=0;
-      kupovane[i].id:='';
+
+  if purchase=1 then
+       begin
+        kupovane[purchase].id:='';
+        For j:=1 to poz do               //vyprazdni rekord pri zamykani pokladne
+              begin
+                kupovane[purchase].want[j].nazov:='';
+                kupovane[purchase].want[j].kod:='';
+                kupovane[purchase].want[j].mnozstvo:=0;
+                kupovane[purchase].want[j].cost:=0;
+                kupovane[purchase].want[j].price:=0;
+              end;
+       end
+  else begin
+    For i:=1 to purchase do
+        begin
+        kupovane[purchase].id:='';
+        For j:=1 to poz do               //vyprazdni rekord aby sa mohlo znovu nakupovat
+              begin
+                kupovane[purchase].want[j].nazov:='';
+                kupovane[purchase].want[j].kod:='';
+                kupovane[purchase].want[j].mnozstvo:=0;
+                kupovane[purchase].want[j].cost:=0;
+                kupovane[purchase].want[j].price:=0;
+              end;
+
+        end;
     end;
+
+purchase:=0; //vypiname pokladnu
+
 end;
 
-procedure TForm4.Button1Click(Sender: TObject);
-var i:integer;
+procedure TForm4.Button1Click(Sender: TObject);   //novy nakup od formu2
+var i,j:integer;
 begin
-  Form2.Show;
-  For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
-    begin
-      kupovane[i].kod:='';
-      kupovane[i].mnozstvo:=0;
-      kupovane[i].cena:=0;
-      kupovane[i].id:='';
-    end;
-  Form4.memo1.clear;
+Form2.Show;
+Form2.memo2.clear;
+Form3.memo2.clear;
+Form4.memo1.clear;
+Form2.memo1.clear;
+Form2.edit3.clear;
+Form2.edit2.clear;
+Form3.edit3.clear;
+
+inc(purchase);
+poz:=0;
+form2.memo1.append(inttostr(t));
+form2.memo1.append(inttostr(purchase));
+
 end;
 
 end.

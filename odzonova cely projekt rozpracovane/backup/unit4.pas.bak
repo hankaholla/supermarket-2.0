@@ -21,24 +21,35 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
   end;
+    const n=100;
+    w=100;
+    type zaznam4=record      //chcem kupit
+      kod:string;
+      nazov:string;
+      mnozstvo:integer;
+      cost:real;
+      price:real;
+      id:string;
+      end;
 type zaznam=record
-     kod:string;
-     mnozstvo: integer;
-     cena:real;
      id:string;
+     want:array[1..w] of zaznam4;
      end;
-  const n=100;
+
 var
   Form4: TForm4;
+  t:integer;
   kupovane:array[1..n]of zaznam;
+  want:array[1..w] of zaznam4;
 implementation
 uses
-  Unit1,Unit2;
+  Unit1,Unit2,Unit3;
 
 {$R *.lfm}
 
@@ -48,6 +59,11 @@ procedure TForm4.FormCreate(Sender: TObject);
 begin
   //nacitanie uctenky
 //Memo1.append
+end;
+
+procedure TForm4.Memo1Change(Sender: TObject);
+begin
+
 end;
 
 procedure TForm4.Button7Click(Sender: TObject);
@@ -66,17 +82,30 @@ For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
 end;
 
 procedure TForm4.Button1Click(Sender: TObject);
-var i:integer;
+var i,j:integer;
 begin
   Form2.Show;
-  For i:=1 to n do               //vyprazdni rekord aby sa mohlo znovu nakupovat
-    begin
-      kupovane[i].kod:='';
-      kupovane[i].mnozstvo:=0;
-      kupovane[i].cena:=0;
-      kupovane[i].id:='';
-    end;
+  Form2.memo2.clear;
+  Form3.memo2.clear;
+
+  For i:=1 to n do
+      begin
+        kupovane[i].id:='';
+      For j:=1 to t do               //vyprazdni rekord aby sa mohlo znovu nakupovat
+            begin
+              kupovane[i].want[j].nazov:='';
+              kupovane[i].want[j].kod:='';
+              kupovane[i].want[j].mnozstvo:=0;
+              kupovane[i].want[j].cost:=0;
+              kupovane[i].want[j].price:=0;
+            end;
+
+      end;
+
   Form4.memo1.clear;
+  Form2.memo1.clear;
+t:=0;
+form2.memo1.append(inttostr(t));
 end;
 
 end.
