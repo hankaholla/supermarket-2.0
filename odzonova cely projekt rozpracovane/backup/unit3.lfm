@@ -213,6 +213,5 @@ object Form3: TForm3
       'Memo1'
     )
     TabOrder = 12
-    Visible = False
   end
 end

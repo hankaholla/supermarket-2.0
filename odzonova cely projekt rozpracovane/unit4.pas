@@ -56,8 +56,7 @@ uses
 
 procedure TForm4.FormCreate(Sender: TObject);
 begin
-  //nacitanie uctenky
-//Memo1.append
+
 end;
 
 procedure TForm4.Memo1Change(Sender: TObject);
@@ -72,33 +71,14 @@ Form1.Show;
 Form1.edit2.clear;
 Form1.label7.visible:=False;
 
-  if purchase=1 then
-       begin
-        kupovane[purchase].id:='';
         For j:=1 to poz do               //vyprazdni rekord pri zamykani pokladne
               begin
-                kupovane[purchase].want[j].nazov:='';
-                kupovane[purchase].want[j].kod:='';
-                kupovane[purchase].want[j].mnozstvo:=0;
-                kupovane[purchase].want[j].cost:=0;
-                kupovane[purchase].want[j].price:=0;
+                want[j].nazov:='';
+                want[j].kod:='';
+                want[j].mnozstvo:=0;
+                want[j].cost:=0;
+                want[j].price:=0;
               end;
-       end
-  else begin
-    For i:=1 to purchase do
-        begin
-        kupovane[purchase].id:='';
-        For j:=1 to poz do               //vyprazdni rekord aby sa mohlo znovu nakupovat
-              begin
-                kupovane[purchase].want[j].nazov:='';
-                kupovane[purchase].want[j].kod:='';
-                kupovane[purchase].want[j].mnozstvo:=0;
-                kupovane[purchase].want[j].cost:=0;
-                kupovane[purchase].want[j].price:=0;
-              end;
-
-        end;
-    end;
 
 purchase:=0; //vypiname pokladnu
 
@@ -106,6 +86,7 @@ end;
 
 procedure TForm4.Button1Click(Sender: TObject);   //novy nakup od formu2
 var i,j:integer;
+
 begin
 Form2.Show;
 Form2.memo2.clear;
@@ -115,11 +96,20 @@ Form2.memo1.clear;
 Form2.edit3.clear;
 Form2.edit2.clear;
 Form3.edit3.clear;
-
-inc(purchase);
-poz:=0;
-form2.memo1.append(inttostr(t));
 form2.memo1.append(inttostr(purchase));
+{For j:=1 to poz do               //vyprazdni rekord pri zamykani pokladne
+             begin
+               want[j].nazov:='';
+               want[j].kod:='';
+               want[j].mnozstvo:=0;
+               want[j].cost:=0;
+               want[j].price:=0;
+             end; }
+
+//inc(purchase);
+poz:=0;
+
+form2.memo1.append(inttostr(poz));
 
 end;
 

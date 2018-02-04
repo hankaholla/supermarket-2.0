@@ -45,6 +45,7 @@ type
     procedure Edit2Click(Sender: TObject);
     procedure Edit3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ListView1Click(Sender: TObject);
     procedure ListView1ItemChecked(Sender: TObject; Item: TListItem);
     procedure ListView1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -77,10 +78,10 @@ type zaznam4=record      //chcem kupit
       price:real;
       id:string;
       end;
-   type zaznam2=record     //nakupene
+  { type zaznam2=record     //nakupene
        id: string;
        want:array[1..w] of zaznam4;
- end;
+ end;  }
 const n=30;
       m=10;
       path='\\commenius\public\market\tima';
@@ -88,14 +89,14 @@ const n=30;
 
 var zoznam: array[1..n] of zaznam1;
     najpredavanejsie: array[1..m] of zaznam;
-    kupovane: array[1..w] of zaznam2;
+    //kupovane: array[1..w] of zaznam2;
     cennik:array[1..n] of zaznam3;
     want:array[1..w] of zaznam4;
 
     subor,subor1,subor2,subor3: textfile;
     spolu,nakupujem: integer;
     kod_tovaru:string;
-    pocetriadkov,pocetriadkov2,done:integer;
+    pocetriadkov,pocetriadkov2,done,purchase,poz:integer;
     ucet:real;
     checked:boolean;
     //t:integer;
@@ -121,24 +122,24 @@ ops:=0;
 strmnozstvo:=edit2.text;
 if strmnozstvo='' then  begin
                              ops:=1;
-                             showmessage('Pole nemôže byť prázdne. Zadajte prosím požadované množstvo.');
+                             showmessage('Pole množstvo nemôže byť prázdne. Zadajte prosím požadované množstvo.');
                              end;
 
 if ops<>1 then  mnozstvo:=strtoint(edit2.text);
 If ops<>1 then
    if (mnozstvo=0) then begin
-                          showmessage('Pole nemôže byť prázdne. Zadajte prosím požadované množstvo.');
+                          showmessage('Pole množstvo nemôže byť prázdne. Zadajte prosím požadované množstvo.');
                           ops:=1;
                           end;
 
 kod_tovaru:=edit1.text;
 error:=0;
 if kod_tovaru='' then begin
-                 showmessage('Pole nemôže byť prázdne. Zadajte prosím kód tovaru.');
+                 showmessage('Pole kód tovaru nemôže byť prázdne. Zadajte prosím kód tovaru.');
                  error:=1;
                  end;
 if kod_tovaru='000000' then begin
-                             showmessage('Pole nemôže byť prázdne. Zadajte prosím kód tovaru.');
+                             showmessage('Pole kód tovaru nemôže byť prázdne. Zadajte prosím kód tovaru.');
                              error:=1;
                              end;
 
@@ -211,14 +212,19 @@ begin
     // memo2.append(kupovane[h].nazov + ' ' + inttostr(kupovane[h].mnozstvo))
 end;
 procedure TForm2.Button5Click(Sender: TObject);     //vyuctuj
-var cislonakupu,pokl,i,number,tt:integer;
-    id_transakcie:string;
+var cislonakupu,pokl,i,j,number,product,hope:integer;
+    id_transakcie,id_stat:string;
 begin
+hope:=0;
+
  Form4.Show;
  Form4.memo1.clear;
  Form4.Memo1.append('Pokladnik: '+pokladnik);
  Form4.Memo1.append('');
- Form4.Memo1.append('Dátum nákupu: '+DateToStr(today));     //+'  '+TimeToStr(today)); //ShowMessage('Today     = '+DateToStr(date));
+ Form4.Memo1.append('Dátum nákupu: '+DateToStr(today));
+
+ For j:=1 to poz do
+  ucet:=ucet+want[j].price;
 
  number:=0;
  randomize;
@@ -226,30 +232,27 @@ begin
  For i:=2 to 11 do
      begin
        number:=random(10);
+       id_stat:=id_stat+inttostr(number);
        id_transakcie:=id_transakcie+inttostr(number);
      end;
 
+
   Form4.Memo1.Append('ID transakcie: '+id_transakcie);
-
-  Form4.Memo1.append('');
   Form4.Memo1.append('');
 
-  For tt:=1 to poz do
-      begin
-         ucet:=ucet+kupovane[purchase].want[tt].price;
-         Form4.Memo1.append(kupovane[purchase].want[tt].nazov+' '
-             +inttostr(kupovane[purchase].want[tt].mnozstvo)+' x '
-             +floattostr(kupovane[purchase].want[tt].cost)+'€'+'   '
-             +floattostr(kupovane[purchase].want[tt].price)+'€');
-         end;
+  For hope:=1 to poz do
+  Form4.Memo1.append(want[hope].nazov+' '+inttostr(want[hope].mnozstvo)+' x '+floattostr(want[hope].cost)+'   '+floattostr(want[hope].price));
 
   Form4.Memo1.append('');
   Form4.Memo1.append('Spolu: '+floattostr(ucet)+'€');;
 
-
  assignfile(subor3,'STATISTIKA.txt');
- rewrite(subor3);
- writeln(subor3,want[1].kod,';',want[1].mnozstvo,';',want[1].cost,';');
+ append(subor3);
+ For i:=1 to poz do
+     begin
+       writeln(subor3,'P',';',id_stat);
+       writeln(subor3,want[i].kod,';',want[i].mnozstvo,';',floattostr(want[i].cost));
+       end;
  closefile(subor3);
 
 end;
@@ -283,30 +286,31 @@ If ops<>1 then begin
                  end;
 
 if checked=true then
-   selected:=(ListView1.Selected.Caption);
+   selected:=(ListView1.Selected.Caption)
+else showmessage('Nevybrali ste žiadnu položku. Prosím vyberte zo zoznamu');
 
-If ops<>1 then
-      For i:=1 to 10 do
-          if (selected=najpredavanejsie[i].nazov) then
-             begin
-              cost:=najpredavanejsie[i].cena;
-              final:=najpredavanejsie[i].nazov;
-              price:=mnozstvo*cost;
-              inc(poz);
-              //memo1.append(inttostr(poz));
-              kupovane[purchase].want[poz].nazov:=final;
-              kupovane[purchase].want[poz].kod:=najpredavanejsie[i].kod;
-              kupovane[purchase].want[poz].mnozstvo:=mnozstvo;
-              kupovane[purchase].want[poz].cost:=cost;
-              kupovane[purchase].want[poz].price:=price;
-             end;
-
-If ops<>1 then
-   begin
-Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'          '+floattostr(price)+'€');
-Form3.Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'    '+floattostr(price)+'€');
-
-end;
+If checked<>false then
+    If ops<>1 then
+          For i:=1 to 10 do
+              if (selected=najpredavanejsie[i].nazov) then
+                 begin
+                  cost:=najpredavanejsie[i].cena;
+                  final:=najpredavanejsie[i].nazov;
+                  price:=mnozstvo*cost;
+                  inc(poz);
+                  //memo1.append(inttostr(poz));
+                  want[poz].nazov:=final;
+                  want[poz].kod:=najpredavanejsie[i].kod;
+                  want[poz].mnozstvo:=mnozstvo;
+                  want[poz].cost:=cost;
+                  want[poz].price:=price;
+                 end;
+If checked<>false then
+    If ops<>1 then
+       begin
+          Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'          '+floattostr(price)+'€');
+          Form3.Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'    '+floattostr(price)+'€');
+       end;
 
 end;
 
@@ -337,11 +341,11 @@ var x,y,i,j,k,ano: integer;
     success:array[1..10]of integer;
 begin
 done:=0;
+checked:=false;
 today:= Now;
 DefaultFormatSettings.DecimalSeparator:='.';
 
 memo2.clear;
-Memo2.Lines.Add(' ');
 
 assignfile(subor1,'TOVAR.txt');      //nacitava cely zoznam
 reset(subor1);
@@ -567,6 +571,11 @@ until (k=10); }
   Item2.Caption := 'item2';
   Item2.SubItems.Add('subitem2');}
 
+end;
+
+procedure TForm2.ListView1Click(Sender: TObject);
+begin
+checked:=true;
 end;
 
 procedure TForm2.ListView1ItemChecked(Sender: TObject; Item: TListItem);

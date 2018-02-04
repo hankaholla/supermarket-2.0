@@ -123,6 +123,11 @@ if purchase=0 then begin
                                      done:=1;
                                      inc(purchase);
                                      end;
+Form2.memo2.clear;
+Form3.memo2.clear;
+Form2.edit2.clear;
+Form2.edit3.clear;
+form3.edit3.clear;
 end;
 
 procedure TForm1.Edit2Click(Sender: TObject);

@@ -42,7 +42,7 @@ var zamestnanci: array [1..n] of zaznam;
     meno: string;
     Form1: TForm1;
     pokladnik:string;
-    kup,purchase,done,skuska:integer;
+    kup,purchase,done,skuska,poz:integer;
 
 implementation
 uses
@@ -56,6 +56,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i: integer;
 begin
 skuska:=0;
+poz:=0;
 done:=0;
 label7.visible:=False;
 

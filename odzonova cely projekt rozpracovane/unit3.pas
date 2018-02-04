@@ -41,7 +41,6 @@ type
     procedure Button9Click(Sender: TObject);
     procedure Edit3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Image1Click(Sender: TObject);
     procedure ListView1Click(Sender: TObject);
     procedure ListView1ItemChecked(Sender: TObject; Item: TListItem);
     procedure ListView1MouseDown(Sender: TObject; Button: TMouseButton;
@@ -71,10 +70,10 @@ end;
       price:real;
       id:string;
       end;
-   type zaznam2=record     //nakupene
+   {type zaznam2=record     //nakupene
        id: string;
        want:array[1..w] of zaznam4;
-       end;
+       end;  }
 const N=30;
   M=5 ;
 
@@ -88,11 +87,11 @@ var
   zelenina:array[1..N]of zaznam;
   drogeria:array[1..N]of zaznam;
   maso:array[1..N]of zaznam;
-  kupovane: array[1..w] of zaznam2;
+  //kupovane: array[1..w] of zaznam2;
   want:array[1..w] of zaznam4;
 
   subor1:textfile;
-  i,l,x,y,o,z,p,s,d,k,r,done:integer;
+  i,l,x,y,o,z,p,s,d,k,r,done,poz,purchase:integer;
 
 implementation
 uses
@@ -205,8 +204,9 @@ end;
 
 procedure TForm3.Button9Click(Sender: TObject);
 var ops,mnozstvo:integer;
-  strmnozstvo,selected,final:string;
+  strmnozstvo,selected:string;
   cost,price:real;
+  final:string;
 
 begin
 //inc(skuska);
@@ -218,12 +218,12 @@ if strmnozstvo='' then  begin
                              ops:=1;
                              showmessage('Pole množstvo nemôže byť prázdne. Zadajte prosím požadované množstvo.');
                              end;
-if strmnozstvo='mnozstvo' then begin
+if edit3.text='mnozstvo' then begin
                                 ops:=1;
                                 showmessage('Pole množstvo nemôže byť prázdne. Zadajte prosím požadované množstvo.');
-                               end;
+                                end;
 
-if ops<>1 then begin
+If ops<>1 then begin
                  mnozstvo:=strtoint(edit3.text);
                  if mnozstvo=0 then
                                begin
@@ -234,30 +234,30 @@ if ops<>1 then begin
 
 if checked=true then
    selected:=(ListView1.Selected.Caption)
-   else showmessage('Nevybrali ste žiadnu položku. Prosím vyberte zo zoznamu');
+else showmessage('Nevybrali ste žiadnu položku. Prosím vyberte zo zoznamu');
 
-If ops<>1 then
-      For i:=1 to pocetriadkov do
-          if (selected=pole[i].nazov) then
-             begin
-             final:=pole[i].nazov;
-             cost:=pole[i].cena;
-             price:=mnozstvo*cost;
-
-             inc(poz);
-             memo1.append(inttostr(poz));
-              kupovane[purchase].want[poz].nazov:=final;
-              kupovane[purchase].want[poz].kod:=pole[i].kod;
-              kupovane[purchase].want[poz].mnozstvo:=mnozstvo;
-              kupovane[purchase].want[poz].cost:=cost;
-              kupovane[purchase].want[poz].price:=price;
-             end;
-
-If ops<>1 then
-   begin
-Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'          '+floattostr(price)+'€');
-Form2.Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'    '+floattostr(price)+'€');
-end;
+If checked<>false then
+    If ops<>1 then
+          For i:=1 to 30 do
+              if (selected=pole[i].nazov) then
+                 begin
+                  cost:=pole[i].cena;
+                  final:=pole[i].nazov;
+                  price:=mnozstvo*cost;
+                  inc(poz);
+                  //memo1.append(inttostr(poz));
+                  want[poz].nazov:=final;
+                  want[poz].kod:=najpredavanejsie[i].kod;
+                  want[poz].mnozstvo:=mnozstvo;
+                  want[poz].cost:=cost;
+                  want[poz].price:=price;
+                 end;
+If checked<>false then
+    If ops<>1 then
+       begin
+          Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'          '+floattostr(price)+'€');
+          Form2.Memo2.append(final+' '+inttostr(mnozstvo)+' x '+floattostr(cost)+'€'+'    '+floattostr(price)+'€');
+       end;
 
 end;
 
@@ -404,13 +404,9 @@ Button3.Click;
 
 end;
 
-procedure TForm3.Image1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TForm3.ListView1Click(Sender: TObject);
 begin
+checked:=true;
   //memo1.append('list'+inttostr(poz));
 end;
 
@@ -441,6 +437,7 @@ Item := ListView1.GetItemAt(X, Y);
    if ListView1.Selected <> Item then
      ListView1.Selected := Item;
 
+checked:=true;
 end;
 
 end.

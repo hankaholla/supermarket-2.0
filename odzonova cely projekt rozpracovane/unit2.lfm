@@ -1,7 +1,7 @@
 object Form2: TForm2
-  Left = 752
+  Left = 838
   Height = 804
-  Top = 71
+  Top = 44
   Width = 937
   HelpType = htKeyword
   HelpKeyword = 'uctenka'
@@ -203,19 +203,19 @@ object Form2: TForm2
     ScrollBars = ssAutoVertical
     TabOrder = 8
     ViewStyle = vsReport
+    OnClick = ListView1Click
     OnItemChecked = ListView1ItemChecked
     OnMouseDown = ListView1MouseDown
   end
   object Memo1: TMemo
-    Left = 336
+    Left = 264
     Height = 127
-    Top = 640
+    Top = 456
     Width = 96
     Lines.Strings = (
       'Memo1'
     )
     TabOrder = 9
-    Visible = False
   end
   object Label4: TLabel
     Left = 610
